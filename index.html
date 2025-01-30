@@ -34,12 +34,19 @@
         }
 
         header h1 {
+            font-size: 40px;
             margin: 0;
         }
 
         header h2 {
             font-size: 18px;
             margin-top: 5px;
+        }
+
+        header h3 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .content {
@@ -91,10 +98,24 @@
             background-color: #bdc3c7;
             border-radius: 5px;
             text-align: center;
+            position: relative;
         }
 
         #navigation ul li:hover {
             background-color: #95a5a6;
+        }
+
+        .signet {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50%;
+            display: none; /* Caché par défaut */
+            animation: fadeOutSignet 5s forwards; /* Disparition après 5s */
         }
 
         h1 {
@@ -113,11 +134,23 @@
             font-size: 14px;
             color: #b4b4b4;
         }
+
+        /* Animation pour faire disparaître le signet */
+        @keyframes fadeOutSignet {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
+        <h3>Le Saint Livre des Caps</h3> <!-- Titre plus grand que le slogan -->
         <h1>La Capoui (Ma Bible)</h1>
         <h2>Explorez les capes sacrés à travers le texte divin.</h2>
     </header>
@@ -185,19 +218,32 @@
             capes.forEach(cap => {
                 const li = document.createElement('li');
                 li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id); // Utilisation de l'ID unique pour chaque cap
+                li.onclick = () => scrollToCap(cap.id, li); // Utilisation de l'ID unique pour chaque cap
                 capList.appendChild(li);
             });
         }
 
-        // Fonction pour faire défiler la page vers un cap spécifique
-        function scrollToCap(capId) {
-            const capElement = document.getElementById(capId);
-            if (capElement) {
-                capElement.scrollIntoView({
+        // Fonction pour faire défiler la page vers un cap spécifique et afficher un signet rouge
+        function scrollToCap(capId, capElement) {
+            const capEl = document.getElementById(capId);
+            if (capEl) {
+                capEl.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'  // Positionner le cap au sommet de la fenêtre
                 });
+
+                // Créer un signet rouge à côté du cap
+                const signet = document.createElement('div');
+                signet.classList.add('signet');
+                capElement.appendChild(signet);
+
+                // Afficher le signet
+                signet.style.display = 'block';
+
+                // Après 5 secondes, le signet disparaît
+                setTimeout(() => {
+                    signet.style.display = 'none';
+                }, 5000); // Disparition après 5 secondes
             }
         }
 
