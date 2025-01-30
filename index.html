@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Capoui officielle 2</title>
+    <title>La Capoui officielle 3</title>
     <style>
         @font-face {
             font-family: 'GodOfWar';
@@ -28,8 +28,17 @@
             background-color: #2c3e50;
             color: white;
             text-align: center;
-            padding: 0px;
+            padding: 20px;
             width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .header-content {
+            transition: all 0.3s ease;
         }
 
         header h1 {
@@ -46,6 +55,18 @@
             font-size: 50px;
             font-weight: bold;
             margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn {
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            border: 1px solid black;
+            border-radius: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
 
         .content {
@@ -54,8 +75,7 @@
             align-items: flex-start;
             width: 100%;
             flex: 1;
-            padding: 20px;
-            overflow: hidden;
+            padding: 100px 20px 20px;
         }
 
         section {
@@ -97,150 +117,68 @@
             background-color: #bdc3c7;
             border-radius: 5px;
             text-align: center;
-            position: relative;
         }
 
         #navigation ul li:hover {
             background-color: #95a5a6;
         }
-
-        .signet {
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15px;
-            height: 15px;
-            background-color: red;
-            border-radius: 50%;
-            display: none; 
-            animation: fadeOutSignet 5s forwards; 
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        pre {
-            font-size: 18px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            color: #7f8c8d;
-        }
-
-        .cap-text {
-            font-size: 14px;
-            color: #b4b4b4;
-        }
-
-        @keyframes fadeOutSignet {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h3>Le Saint Livre CAPOUI</h3>
-        <h1>La Capoui</h1>
-        <h2>Explorez les capes sacrés à travers le texte divin.</h2>
-               <a href="capoui.txt" download="Le saint graal" style="background-color: white; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-  Télécharge la Capoui
-</a>
-
+    <header id="main-header">
+        <div class="header-content" id="header-content">
+            <h3 id="title">Le Saint Livre CAPOUI</h3>
+            <h1 id="main-title">La Capoui</h1>
+            <h2 id="subtitle">Explorez les capes sacrés à travers le texte divin.</h2>
+        </div>
+        <a href="capoui.txt" download="Le saint graal" class="download-btn" id="download-btn">Télécharge la Capoui</a>
     </header>
 
     <div class="content">
         <section>
             <pre id="capoui-content">Chargement du contenu...</pre>
         </section>
-
-        <div id="navigation">
-            <h3>Navigation des Caps</h3>
-            <ul id="cap-list">
-            </ul>
-        </div>
     </div>
 
     <script>
         function loadCapouiText() {
             fetch('capoui.txt') 
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erreur de chargement du fichier');
-                    }
-                    return response.text();
-                })
+                .then(response => response.text())
                 .then(text => {
-                    const { formattedText, capes } = formatTextAndExtractCaps(text);
-                    document.getElementById('capoui-content').innerHTML = formattedText;
-                    populateCapList(capes);
+                    document.getElementById('capoui-content').innerText = text;
                 })
                 .catch(error => {
                     document.getElementById('capoui-content').textContent = 'Erreur de chargement du fichier : ' + error.message;
                 });
         }
 
-        function formatTextAndExtractCaps(text) {
-            const lines = text.split('\n');
-            const formattedLines = [];
-            const capes = [];
-            
-            lines.forEach((line, index) => {
-                if (line.startsWith('- Cap')) {
-                    const capId = `cap-${index}`; 
-                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                    capes.push({ name: line, id: capId });
-                } else {
-                    formattedLines.push(line);
-                }
-            });
-            
-            return {
-                formattedText: formattedLines.join('\n'),
-                capes
-            };
-        }
+        window.addEventListener('scroll', function() {
+            let header = document.getElementById('main-header');
+            let content = document.getElementById('header-content');
+            let downloadBtn = document.getElementById('download-btn');
+            let title = document.getElementById('title');
+            let mainTitle = document.getElementById('main-title');
+            let subtitle = document.getElementById('subtitle');
 
-        function populateCapList(capes) {
-            const capList = document.getElementById('cap-list');
-            capList.innerHTML = ''; 
-            capes.forEach(cap => {
-                const li = document.createElement('li');
-                li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id, li); 
-                capList.appendChild(li);
-            });
-        }
-
-        function scrollToCap(capId, capElement) {
-            const capEl = document.getElementById(capId);
-            if (capEl) {
-                capEl.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'  // Positionner le cap au sommet de la fenêtre
-                });
-
-                const signet = document.createElement('div');
-                signet.classList.add('signet');
-                capElement.appendChild(signet);
-
-                signet.style.display = 'block';
-
-                setTimeout(() => {
-                    signet.style.display = 'none';
-                }, 5000); 
+            if (window.scrollY > 50) {
+                header.style.padding = '5px 20px';
+                content.style.transform = 'scale(1.2)';
+                title.style.fontSize = '60px';
+                mainTitle.style.fontSize = '80px';
+                subtitle.style.display = 'none';
+                downloadBtn.style.display = 'block';
+            } else {
+                header.style.padding = '20px';
+                content.style.transform = 'scale(1)';
+                title.style.fontSize = '50px';
+                mainTitle.style.fontSize = '50px';
+                subtitle.style.display = 'block';
+                downloadBtn.style.display = 'inline-block';
             }
-        }
+        });
 
         window.onload = loadCapouiText;
     </script>
-
 </body>
 </html>
