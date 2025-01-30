@@ -170,12 +170,12 @@
 <body>
 
     <header>
-        <h3>Le Saint Livre Caplot</h3>
-        <h1>La Caplot</h1>
-        <h2>Explorez les caps sacrés à travers le texte divin.</h2>
+        <h3 id="header-title">Le Saint Livre Caplot</h3>
+        <h1 id="header-main-title">La Caplot</h1>
+        <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
         <div class="button-container">
-            <!-- Bouton pour mettre en anglais -->
-            <button class="header-button" onclick="setLanguage('en')">Mettre en anglais</button>
+            <!-- Bouton pour changer la langue -->
+            <button id="lang-button" class="header-button" onclick="toggleLanguage()">Mettre en anglais</button>
             <a href="capoui.txt" download="Le saint graal" class="header-button">Télécharge la Caplot</a>
             <!-- Bouton pour basculer le mode sombre -->
             <button class="header-button dark-mode-button">Mode Sombre</button>
@@ -188,13 +188,14 @@
         </section>
 
         <div id="navigation">
-            <h3>Navigation des Caps</h3>
+            <h3 id="nav-title">Navigation des Caps</h3>
             <ul id="cap-list"></ul>
         </div>
     </div>
 
     <script>
         let currentFile = 'capoui.txt'; // Fichier par défaut (en français)
+        let language = 'fr'; // Langue par défaut
 
         function loadText() {
             fetch(currentFile)
@@ -259,13 +260,36 @@
         }
 
         // Fonction pour changer de langue
-        function setLanguage(language) {
-            if (language === 'en') {
+        function toggleLanguage() {
+            if (language === 'fr') {
                 currentFile = 'capoui-en.txt'; // Fichier en anglais
+                language = 'en'; // Changer la langue en anglais
+                updateUI('en');
             } else {
                 currentFile = 'capoui.txt'; // Retour au fichier français
+                language = 'fr'; // Changer la langue en français
+                updateUI('fr');
             }
             loadText(); // Charger le fichier dans la nouvelle langue
+        }
+
+        // Fonction pour mettre à jour l'interface en fonction de la langue
+        function updateUI(lang) {
+            if (lang === 'en') {
+                // Texte en anglais
+                document.getElementById('header-title').textContent = 'The Holy Book Caplot';
+                document.getElementById('header-main-title').textContent = 'The Caplot';
+                document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
+                document.getElementById('nav-title').textContent = 'Caps Navigation';
+                document.getElementById('lang-button').textContent = 'Put in French';
+            } else {
+                // Texte en français
+                document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
+                document.getElementById('header-main-title').textContent = 'La Caplot';
+                document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
+                document.getElementById('nav-title').textContent = 'Navigation des Caps';
+                document.getElementById('lang-button').textContent = 'Mettre en anglais';
+            }
         }
 
         // Écouteur d'événement pour le bouton "Mode Sombre"
