@@ -33,6 +33,15 @@
             width: 100%;
         }
 
+        header h1 {
+            margin: 0;
+        }
+
+        header h2 {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
         .content {
             display: flex;
             justify-content: center;
@@ -110,6 +119,7 @@
 
     <header>
         <h1>La Capoui (Ma Bible)</h1>
+        <h2>Explorez les capes sacrés à travers le texte divin.</h2>
     </header>
 
     <div class="content">
@@ -184,9 +194,9 @@
         function scrollToCap(capId) {
             const capElement = document.getElementById(capId);
             if (capElement) {
-                window.scrollTo({
-                    top: capElement.offsetTop - 50,  // Décalage pour le header
-                    behavior: 'smooth'
+                capElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'  // Positionner le cap au sommet de la fenêtre
                 });
             }
         }
