@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Capoui (Ma Bible)</title>
     <style>
-        /* Définir la police GodOfWar depuis le fichier TTF uniquement */
         @font-face {
             font-family: 'GodOfWar';
             src: url('GODOFWAR.TTF') format('truetype');
@@ -33,124 +32,50 @@
             width: 100%;
         }
 
-        header h1 {
-            font-size: 40px;
-            margin: 0;
-        }
-
-        header h2 {
-            font-size: 18px;
-            margin-top: 5px;
-        }
-
-        header h3 {
-            font-size: 50px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
         .content {
             display: flex;
             justify-content: center;
             align-items: flex-start;
             width: 100%;
-            flex: 1; /* Prendre toute la hauteur restante */
+            flex: 1;
             padding: 20px;
-            overflow: hidden; /* Cache les débordements */
+            overflow: hidden;
         }
 
         section {
-            margin: 0;
             max-width: 800px;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             width: 70%;
-            overflow-y: auto; /* Permet de défiler si le contenu dépasse */
-            max-height: 90vh; /* Limite la hauteur pour éviter de remplir toute la page */
-        }
-
-        #navigation {
-            margin-left: 20px;
-            width: 25%;
-            padding: 10px;
-            background-color: #ecf0f1;
-            border-radius: 10px;
-            position: sticky;
-            top: 20px;
-            height: 80vh;
             overflow-y: auto;
+            max-height: 90vh;
         }
 
-        #navigation h3 {
-            text-align: center;
-        }
-
-        #navigation ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #navigation ul li {
-            margin: 10px 0;
-            cursor: pointer;
-            padding: 5px;
-            background-color: #bdc3c7;
-            border-radius: 5px;
-            text-align: center;
+        .cap-text {
+            font-size: 14px;
+            color: #b4b4b4;
             position: relative;
-        }
-
-        #navigation ul li:hover {
-            background-color: #95a5a6;
+            display: inline-block;
         }
 
         .signet {
             position: absolute;
-            right: -20px;
+            left: -20px;
             top: 50%;
             transform: translateY(-50%);
             width: 15px;
             height: 15px;
             background-color: red;
             border-radius: 50%;
-            display: none; /* Caché par défaut */
-            animation: fadeOutSignet 5s forwards; /* Disparition après 5s */
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        pre {
-            font-size: 18px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            color: #7f8c8d;
-        }
-
-        /* Style spécifique pour les chapitres '- Cap' */
-        .cap-text {
-            font-size: 14px;
-            color: #b4b4b4;
-        }
-
-        /* Animation pour faire disparaître le signet */
-        @keyframes fadeOutSignet {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                display: none;
-            }
+            display: none;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h3>Le Saint Livre des Caps</h3> <!-- Titre plus grand que le slogan -->
+        <h3>Le Saint Livre des Caps</h3>
         <h1>La Capoui (Ma Bible)</h1>
         <h2>Explorez les capes sacrés à travers le texte divin.</h2>
     </header>
@@ -160,19 +85,11 @@
             <h2>Le contenu de La Capoui :</h2>
             <pre id="capoui-content">Chargement du contenu...</pre>
         </section>
-
-        <div id="navigation">
-            <h3>Navigation des Caps</h3>
-            <ul id="cap-list">
-                <!-- La liste des caps sera générée ici -->
-            </ul>
-        </div>
     </div>
 
     <script>
-        // Fonction pour lire le fichier texte et afficher son contenu
         function loadCapouiText() {
-            fetch('capoui.txt')  // Assurez-vous que 'capoui.txt' est dans le même dossier que ce fichier HTML
+            fetch('capoui.txt')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erreur de chargement du fichier');
@@ -182,72 +99,41 @@
                 .then(text => {
                     const { formattedText, capes } = formatTextAndExtractCaps(text);
                     document.getElementById('capoui-content').innerHTML = formattedText;
-                    populateCapList(capes);
                 })
                 .catch(error => {
                     document.getElementById('capoui-content').textContent = 'Erreur de chargement du fichier : ' + error.message;
                 });
         }
 
-        // Fonction pour formater le texte et extraire les capes
         function formatTextAndExtractCaps(text) {
             const lines = text.split('\n');
             const formattedLines = [];
-            const capes = [];
             
             lines.forEach((line, index) => {
                 if (line.startsWith('- Cap')) {
-                    const capId = `cap-${index}`;  // Créer un ID unique pour chaque cap
-                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                    capes.push({ name: line, id: capId });
+                    const capId = `cap-${index}`;
+                    formattedLines.push(`<span class="cap-text" id="${capId}" onclick="showSignet('${capId}')">${line}<span class='signet'></span></span>`);
                 } else {
                     formattedLines.push(line);
                 }
             });
             
             return {
-                formattedText: formattedLines.join('\n'),
-                capes
+                formattedText: formattedLines.join('\n')
             };
         }
 
-        // Fonction pour remplir la liste des capes dans la barre de navigation
-        function populateCapList(capes) {
-            const capList = document.getElementById('cap-list');
-            capList.innerHTML = '';  // Clear any existing items
-            capes.forEach(cap => {
-                const li = document.createElement('li');
-                li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id, li); // Utilisation de l'ID unique pour chaque cap
-                capList.appendChild(li);
-            });
-        }
-
-        // Fonction pour faire défiler la page vers un cap spécifique et afficher un signet rouge
-        function scrollToCap(capId, capElement) {
+        function showSignet(capId) {
             const capEl = document.getElementById(capId);
             if (capEl) {
-                capEl.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'  // Positionner le cap au sommet de la fenêtre
-                });
-
-                // Créer un signet rouge à côté du cap
-                const signet = document.createElement('div');
-                signet.classList.add('signet');
-                capElement.appendChild(signet);
-
-                // Afficher le signet
+                const signet = capEl.querySelector('.signet');
                 signet.style.display = 'block';
-
-                // Après 5 secondes, le signet disparaît
                 setTimeout(() => {
                     signet.style.display = 'none';
-                }, 5000); // Disparition après 5 secondes
+                }, 5000);
             }
         }
 
-        // Appeler la fonction au chargement de la page
         window.onload = loadCapouiText;
     </script>
 
