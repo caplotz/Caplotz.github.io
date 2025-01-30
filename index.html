@@ -126,7 +126,7 @@
             font-size: 18px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            color: ##2c3e50;
+            color: #2c3e50;
         }
 
         .cap-text {
@@ -188,8 +188,8 @@
             
             lines.forEach((line, index) => {
                 if (line.startsWith('- Cap')) {
-                    const capId = cap-${index};
-                    formattedLines.push(<span class="cap-text" id="${capId}">${line}</span>);
+                    const capId = `cap-${index}`;  // Fix: correct formatting of capId
+                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);  // Fix: use correct HTML element creation
                     capes.push({ name: line, id: capId });
                 } else {
                     formattedLines.push(line);
