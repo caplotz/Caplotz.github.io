@@ -152,10 +152,11 @@
             const formattedLines = [];
             const capes = [];
             
-            lines.forEach(line => {
+            lines.forEach((line, index) => {
                 if (line.startsWith('- Cap')) {
-                    formattedLines.push(`<span class="cap-text" id="${line}">${line}</span>`);
-                    capes.push(line);
+                    const capId = `cap-${index}`;  // Créer un ID unique pour chaque cap
+                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                    capes.push({ name: line, id: capId });
                 } else {
                     formattedLines.push(line);
                 }
@@ -173,15 +174,15 @@
             capList.innerHTML = '';  // Clear any existing items
             capes.forEach(cap => {
                 const li = document.createElement('li');
-                li.textContent = cap;
-                li.onclick = () => scrollToCap(cap);
+                li.textContent = cap.name;
+                li.onclick = () => scrollToCap(cap.id); // Utilisation de l'ID unique pour chaque cap
                 capList.appendChild(li);
             });
         }
 
         // Fonction pour faire défiler la page vers un cap spécifique
-        function scrollToCap(cap) {
-            const capElement = document.getElementById(cap);
+        function scrollToCap(capId) {
+            const capElement = document.getElementById(capId);
             if (capElement) {
                 window.scrollTo({
                     top: capElement.offsetTop - 50,  // Décalage pour le header
