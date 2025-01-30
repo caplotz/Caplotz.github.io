@@ -21,10 +21,8 @@
             padding: 0;
             line-height: 1.6;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px;
+            flex-direction: column;
+            height: 100vh;
         }
 
         header {
@@ -33,7 +31,6 @@
             text-align: center;
             padding: 20px;
             width: 100%;
-            margin-bottom: 20px;
         }
 
         .content {
@@ -41,6 +38,9 @@
             justify-content: center;
             align-items: flex-start;
             width: 100%;
+            flex: 1; /* Prendre toute la hauteur restante */
+            padding: 20px;
+            overflow: hidden; /* Cache les débordements */
         }
 
         section {
@@ -50,7 +50,8 @@
             background-color: white;
             border-radius: 10px;
             width: 70%;
-            overflow: auto;
+            overflow-y: auto; /* Permet de défiler si le contenu dépasse */
+            max-height: 90vh; /* Limite la hauteur pour éviter de remplir toute la page */
         }
 
         #navigation {
