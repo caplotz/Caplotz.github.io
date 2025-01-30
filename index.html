@@ -24,6 +24,12 @@
             height: 100vh;
         }
 
+        /* Mode sombre */
+        body.dark-mode {
+            background-color: #333;
+            color: #f8f9fa;
+        }
+
         header {
             background-color: #febd59;
             color: #2c3e50;
@@ -31,6 +37,12 @@
             padding: 20px 0;
             width: 100%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header en mode sombre */
+        body.dark-mode header {
+            background-color: #555;
+            color: #fff;
         }
 
         header h1 {
@@ -92,6 +104,12 @@
             max-height: 80vh;
         }
 
+        /* Section en mode sombre */
+        body.dark-mode section {
+            background-color: #444;
+            color: #fff;
+        }
+
         #navigation {
             margin-left: 20px;
             width: 25%;
@@ -105,15 +123,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #navigation h3 {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        #navigation ul {
-            list-style: none;
-            padding: 0;
+        /* Navigation en mode sombre */
+        body.dark-mode #navigation {
+            background-color: #555;
+            color: #fff;
         }
 
         #navigation ul li {
@@ -127,6 +140,11 @@
             transition: 0.3s;
         }
 
+        /* Liste des éléments en mode sombre */
+        body.dark-mode #navigation ul li {
+            background-color: #666;
+        }
+
         #navigation ul li:hover {
             background-color: #febd23;
         }
@@ -136,6 +154,11 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             color: #2c3e50;
+        }
+
+        /* Texte en mode sombre */
+        body.dark-mode pre {
+            color: #fff;
         }
 
         .cap-text {
@@ -153,7 +176,7 @@
         <div class="button-container">
             <a href="capoui.txt" download="Le saint graal" class="header-button">Mettre en anglais</a>
             <a href="capoui.txt" download="Le saint graal" class="header-button">Télécharge la Caplot</a>
-            <a href="capoui.txt" download="Le saint graal" class="header-button">Mode Sombre</a>
+            <button class="header-button dark-mode-button">Mode Sombre</button>
         </div>
     </header>
 
@@ -225,6 +248,14 @@
                 capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
+
+        // Fonction pour basculer le mode sombre
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Écouteur d'événement pour le bouton "Mode Sombre"
+        document.querySelector('.dark-mode-button').addEventListener('click', toggleDarkMode);
 
         window.onload = loadText;
     </script>
