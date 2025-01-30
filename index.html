@@ -215,11 +215,10 @@
 
         function scrollToCap(capId) {
             const capEl = document.getElementById(capId);
+            const contentEl = document.querySelector('section');
             if (capEl) {
-                capEl.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                contentEl.scrollTop = capEl.offsetTop - contentEl.offsetTop;
+                // Permet de scroller en douceur vers le cap sans avoir besoin de cliquer plusieurs fois
             }
         }
 
