@@ -183,7 +183,7 @@
         <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
         <div class="button-container">
             <!-- Bouton pour changer la langue -->
-            <button id="lang-button" class="header-button" onclick="toggleLanguage()">Mettre en anglais</button>
+            <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
             <a href="capoui.txt" download="Le saint graal" class="header-button" id="download-button">Télécharge la Caplot</a>
             <!-- Bouton pour basculer le mode sombre -->
             <button class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Sombre</button>
@@ -230,10 +230,10 @@
             const capes = [];
             
             lines.forEach((line, index) => {
-                // Correction pour les nombres complets (2, 9, 4, etc.)
-                if (line.match(/^\d+$/)) {
-                    line = language === 'en' ? line : line;  // Garder le même nombre pour l'instant
-                }
+                // Conversion de nombres complets (2, 9, 4, etc.)
+                line = line.replace(/(\d+)(?=\s*\.|\n)/g, function(match) {
+                    return language === 'en' ? match : match;  // Pour l'instant, on garde les mêmes nombres
+                });
                 if (line.startsWith('- Cap')) {
                     const capId = `cap-${index}`;
                     formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
@@ -295,16 +295,26 @@
                 document.getElementById('header-main-title').textContent = 'The Caplot';
                 document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
                 document.getElementById('nav-title').textContent = 'Cap Navigation';
+                if (document.getElementById('lang-button').textContent = "Mode Sombre") {
+                document.getElementById('lang-button').textContent = "Light Mode"
+                } else {
+                document.getElementById('lang-button').textContent = "Dark Mode"
+                    }
             } else {
                 language = 'fr';
                 currentFile = 'capoui.txt'; // Fichier en français
                 loadText();
-                document.getElementById('lang-button').textContent = 'Mettre en anglais';
+                document.getElementById('lang-button').textContent = 'Put it in english';
                 document.getElementById('download-button').textContent = 'Télécharge la Caplot';
                 document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
                 document.getElementById('header-main-title').textContent = 'La Caplot';
                 document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
                 document.getElementById('nav-title').textContent = 'Navigation des Caps';
+                if (document.getElementById('lang-button').textContent = "Dark Mode") {
+                document.getElementById('lang-button').textContent = "Mode clair"
+                } else {
+                document.getElementById('lang-button').textContent = "Mode Sombre"
+                    }
             }
         }
 
