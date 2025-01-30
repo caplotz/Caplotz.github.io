@@ -113,8 +113,8 @@
             height: 15px;
             background-color: red;
             border-radius: 50%;
-            display: none; 
-            animation: fadeOutSignet 5s forwards; 
+            display: none;
+            animation: fadeOutSignet 5s forwards;
         }
 
         h1 {
@@ -134,13 +134,8 @@
         }
 
         @keyframes fadeOutSignet {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                display: none;
-            }
+            0% { opacity: 1; }
+            100% { opacity: 0; display: none; }
         }
     </style>
 </head>
@@ -150,10 +145,9 @@
         <h3>Le Saint Livre CAPOUI</h3>
         <h1>La Capoui</h1>
         <h2>Explorez les capes sacrés à travers le texte divin.</h2>
-               <a href="capoui.txt" download="Le saint graal" style="background-color: white; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-  Télécharge la Capoui
-</a>
-
+        <a href="capoui.txt" download="Le saint graal" style="background-color: white; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
+            Télécharge la Capoui
+        </a>
     </header>
 
     <div class="content">
@@ -163,14 +157,13 @@
 
         <div id="navigation">
             <h3>Navigation des Caps</h3>
-            <ul id="cap-list">
-            </ul>
+            <ul id="cap-list"></ul>
         </div>
     </div>
 
     <script>
         function loadCapouiText() {
-            fetch('capoui.txt') 
+            fetch('capoui.txt')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erreur de chargement du fichier');
@@ -183,7 +176,7 @@
                     populateCapList(capes);
                 })
                 .catch(error => {
-                    document.getElementById('capoui-content').textContent = 'Erreur de chargement du fichier : ' + error.message;
+                    document.getElementById('capoui-content').textContent = '(ERREUR DU SERVER: ' + error.message + ')';
                 });
         }
 
@@ -194,8 +187,8 @@
             
             lines.forEach((line, index) => {
                 if (line.startsWith('- Cap')) {
-                    const capId = cap-${index}; 
-                    formattedLines.push(<span class="cap-text" id="${capId}">${line}</span>);
+                    const capId = `cap-${index}`;
+                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                     capes.push({ name: line, id: capId });
                 } else {
                     formattedLines.push(line);
@@ -203,18 +196,18 @@
             });
             
             return {
-                formattedText: formattedLines.join('\n'),
+                formattedText: formattedLines.join('<br>'), 
                 capes
             };
         }
 
         function populateCapList(capes) {
             const capList = document.getElementById('cap-list');
-            capList.innerHTML = ''; 
+            capList.innerHTML = '';
             capes.forEach(cap => {
                 const li = document.createElement('li');
                 li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id, li); 
+                li.onclick = () => scrollToCap(cap.id, li);
                 capList.appendChild(li);
             });
         }
@@ -224,7 +217,7 @@
             if (capEl) {
                 capEl.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start'  // Positionner le cap au sommet de la fenêtre
+                    block: 'start'
                 });
 
                 const signet = document.createElement('div');
@@ -235,7 +228,7 @@
 
                 setTimeout(() => {
                     signet.style.display = 'none';
-                }, 5000); 
+                }, 5000);
             }
         }
 
