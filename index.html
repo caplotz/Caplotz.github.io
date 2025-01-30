@@ -126,7 +126,7 @@
             font-size: 18px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            color: ##2c3e50;
+            color: #2c3e50;
         }
 
         .cap-text {
@@ -208,28 +208,18 @@
             capes.forEach(cap => {
                 const li = document.createElement('li');
                 li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id, li);
+                li.onclick = () => scrollToCap(cap.id);
                 capList.appendChild(li);
             });
         }
 
-        function scrollToCap(capId, capElement) {
+        function scrollToCap(capId) {
             const capEl = document.getElementById(capId);
             if (capEl) {
                 capEl.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-
-                const signet = document.createElement('div');
-                signet.classList.add('signet');
-                capElement.appendChild(signet);
-
-                signet.style.display = 'block';
-
-                setTimeout(() => {
-                    signet.style.display = 'none';
-                }, 5000);
             }
         }
 
