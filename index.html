@@ -15,11 +15,10 @@
 
         body {
             font-family: 'GodOfWar', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
             color: #333;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
             display: flex;
             flex-direction: column;
             height: 100vh;
@@ -29,24 +28,47 @@
             background-color: #febd59;
             color: #2c3e50;
             text-align: center;
-            padding: 0px;
+            padding: 20px 0;
             width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 40px;
-            margin: 0;
+            font-size: 45px;
+            margin: 10px 0;
         }
 
         header h2 {
             font-size: 18px;
-            margin-top: 5px;
+            margin-bottom: 15px;
         }
 
         header h3 {
             font-size: 50px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .header-button {
+            background-color: #ff9e40;
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .header-button:hover {
+            background-color: #febd23;
         }
 
         .content {
@@ -55,35 +77,38 @@
             align-items: flex-start;
             width: 80%;
             flex: 1;
-            padding: 10px;
-            overflow: hidden;
+            padding: 20px;
+            margin: auto;
         }
 
         section {
-            margin: 0;
             max-width: 800px;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             width: 70%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
-            max-height: 90vh;
+            max-height: 80vh;
         }
 
         #navigation {
             margin-left: 20px;
             width: 25%;
-            padding: 10px;
+            padding: 20px;
             background-color: #ecf0f1;
             border-radius: 10px;
             position: sticky;
             top: 20px;
             height: 60vh;
             overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         #navigation h3 {
             text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
         #navigation ul {
@@ -94,32 +119,16 @@
         #navigation ul li {
             margin: 10px 0;
             cursor: pointer;
-            padding: 5px;
+            padding: 10px;
             background-color: #febd77;
             border-radius: 5px;
             text-align: center;
-            position: relative;
+            font-size: 16px;
+            transition: 0.3s;
         }
 
         #navigation ul li:hover {
             background-color: #febd23;
-        }
-
-        .signet {
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15px;
-            height: 15px;
-            background-color: red;
-            border-radius: 50%;
-            display: none;
-            animation: none /* Maintenir l'état caché pour désactiver l'affichage: fadeOutSignet 5s forwards; */
-        }
-
-        h1 {
-            color: #2c3e50;
         }
 
         pre {
@@ -133,11 +142,6 @@
             font-size: 14px;
             color: #b4b4b4;
         }
-
-        @keyframes fadeOutSignet {
-            0% { opacity: 1; }
-            100% { opacity: 0; display: none; }
-        }
     </style>
 </head>
 <body>
@@ -146,13 +150,11 @@
         <h3>Le Saint Livre Caplot</h3>
         <h1>La Caplot</h1>
         <h2>Explorez les caps sacrés à travers le texte divin.</h2>
-        <a href="capoui.txt" download="Le saint graal" style="background-color: #febd77; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-            Mettre en anglais
-            <a href="capoui.txt" download="Le saint graal" style="background-color: #febd77; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-            Télécharge la Caplot
-                <a href="capoui.txt" download="Le saint graal" style="background-color: #febd77; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-            Mode Sombre
-        </a>
+        <div class="button-container">
+            <a href="capoui.txt" download="Le saint graal" class="header-button">Mettre en anglais</a>
+            <a href="capoui.txt" download="Le saint graal" class="header-button">Télécharge la Caplot</a>
+            <a href="capoui.txt" download="Le saint graal" class="header-button">Mode Sombre</a>
+        </div>
     </header>
 
     <div class="content">
@@ -181,7 +183,7 @@
                     populateCapList(capes);
                 })
                 .catch(error => {
-                    document.getElementById('-content').textContent = '(ERREUR DU SERVER: ' + error.message + ')';
+                    document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
                 });
         }
 
@@ -192,8 +194,8 @@
             
             lines.forEach((line, index) => {
                 if (line.startsWith('- Cap')) {
-                    const capId = `cap-${index}`;  // Fix: correct formatting of capId
-                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);  // Fix: use correct HTML element creation
+                    const capId = `cap-${index}`;
+                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                     capes.push({ name: line, id: capId });
                 } else {
                     formattedLines.push(line);
@@ -212,28 +214,15 @@
             capes.forEach(cap => {
                 const li = document.createElement('li');
                 li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id, li);
+                li.onclick = () => scrollToCap(cap.id);
                 capList.appendChild(li);
             });
         }
 
-        function scrollToCap(capId, capElement) {
+        function scrollToCap(capId) {
             const capEl = document.getElementById(capId);
             if (capEl) {
-                capEl.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                const signet = document.createElement('div');
-                signet.classList.add('signet');
-                capElement.appendChild(signet);
-
-                signet.style.display = 'block';
-
-                setTimeout(() => {
-                    signet.style.display = 'none';
-                }, 5000);
+                capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
