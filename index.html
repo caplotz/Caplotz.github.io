@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Capoui officielle 4</title>
+    <title>La Biblot</title>
     <style>
         @font-face {
             font-family: 'GodOfWar';
@@ -142,17 +142,17 @@
 <body>
 
     <header>
-        <h3>Le Saint Livre CAPOUI</h3>
-        <h1>La Capoui</h1>
+        <h3>Le Saint Livre Biblot</h3>
+        <h1>La Biblot</h1>
         <h2>Explorez les capes sacrés à travers le texte divin.</h2>
         <a href="capoui.txt" download="Le saint graal" style="background-color: white; color: black; padding: 10px 15px; text-decoration: none; border: 1px solid black; border-radius: 5px; display: inline-block;">
-            Télécharge la Capoui
+            Télécharge la Biblot
         </a>
     </header>
 
     <div class="content">
         <section>
-            <pre id="capoui-content">Chargement du contenu...</pre>
+            <pre id="-content">Chargement du contenu...</pre>
         </section>
 
         <div id="navigation">
@@ -162,8 +162,8 @@
     </div>
 
     <script>
-        function loadCapouiText() {
-            fetch('capoui.txt')
+        function loadText() {
+            fetch('.txt')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erreur de chargement du fichier');
@@ -172,11 +172,11 @@
                 })
                 .then(text => {
                     const { formattedText, capes } = formatTextAndExtractCaps(text);
-                    document.getElementById('capoui-content').innerHTML = formattedText;
+                    document.getElementById('-content').innerHTML = formattedText;
                     populateCapList(capes);
                 })
                 .catch(error => {
-                    document.getElementById('capoui-content').textContent = '(ERREUR DU SERVER: ' + error.message + ')';
+                    document.getElementById('-content').textContent = '(ERREUR DU SERVER: ' + error.message + ')';
                 });
         }
 
@@ -232,7 +232,7 @@
             }
         }
 
-        window.onload = loadCapouiText;
+        window.onload = loadText;
     </script>
 
 </body>
