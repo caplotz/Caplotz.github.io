@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Capoui (Ma Bible)</title>
     <style>
-        /* Définir la police GodOfWar depuis le fichier TTF */
+        /* Définir la police GodOfWar depuis le fichier TTF uniquement */
         @font-face {
             font-family: 'GodOfWar';
-            src: url('GODOFWAR.TTF') format('truetype');
+            src: url('fonts/GODOFWAR.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
         }
 
         body {
@@ -17,6 +19,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         header {
@@ -40,13 +43,12 @@
 
         pre {
             font-size: 18px;
-            line-height: 1.6;
-            white-space: pre-wrap; 
+            white-space: pre-wrap;
             word-wrap: break-word;
             color: #7f8c8d;
         }
 
-        /* Style spécifique pour les chapitres (avec '- Cap') */
+        /* Style spécifique pour les chapitres '- Cap' */
         .cap-text {
             font-size: 14px;
             color: #b4b4b4;
@@ -77,7 +79,7 @@
                 .then(text => {
                     // Remplacer les chapitres '- Cap' par une classe spécifique
                     const formattedText = formatText(text);
-                    document.getElementById('capoui-content').textContent = formattedText;
+                    document.getElementById('capoui-content').innerHTML = formattedText;
                 })
                 .catch(error => {
                     document.getElementById('capoui-content').textContent = 'Erreur de chargement du fichier : ' + error.message;
