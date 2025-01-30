@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: 'GodOfWar', sans-serif; /* Utiliser la police GodOfWar */
+            font-family: 'GodOfWar', sans-serif;
             background-color: #f4f4f4;
             color: #333;
             margin: 0;
@@ -24,6 +24,7 @@
             justify-content: space-between;
             align-items: flex-start;
             min-height: 100vh;
+            padding: 20px;
         }
 
         header {
@@ -32,22 +33,24 @@
             text-align: center;
             padding: 20px;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         .content {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            width: 80%;
+            width: 100%;
         }
 
         section {
-            margin: 20px;
+            margin: 0;
             max-width: 800px;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             width: 70%;
+            overflow: auto;
         }
 
         #navigation {
@@ -58,6 +61,8 @@
             border-radius: 10px;
             position: sticky;
             top: 20px;
+            height: 80vh;
+            overflow-y: auto;
         }
 
         #navigation h3 {
@@ -72,6 +77,14 @@
         #navigation ul li {
             margin: 10px 0;
             cursor: pointer;
+            padding: 5px;
+            background-color: #bdc3c7;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #navigation ul li:hover {
+            background-color: #95a5a6;
         }
 
         h1 {
