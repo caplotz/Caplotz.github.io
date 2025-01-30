@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Capoui officielle</title>
+    <title>La Capoui officielle 4</title>
     <style>
         @font-face {
             font-family: 'GodOfWar';
@@ -176,8 +176,7 @@
                     populateCapList(capes);
                 })
                 .catch(error => {
-                    <h3>Désolé cela est de notre faute</h3>
-                    document.getElementById('capoui-content').textContent = 'Erreur du serveur ' + error.message;
+                    document.getElementById('capoui-content').textContent = '(ERREUR DU SERVER: ' + error.message + ')';
                 });
         }
 
