@@ -174,8 +174,10 @@
         <h1>La Caplot</h1>
         <h2>Explorez les caps sacrés à travers le texte divin.</h2>
         <div class="button-container">
-            <a href="capoui.txt" download="Le saint graal" class="header-button">Mettre en anglais</a>
+            <!-- Bouton pour mettre en anglais -->
+            <button class="header-button" onclick="setLanguage('en')">Mettre en anglais</button>
             <a href="capoui.txt" download="Le saint graal" class="header-button">Télécharge la Caplot</a>
+            <!-- Bouton pour basculer le mode sombre -->
             <button class="header-button dark-mode-button">Mode Sombre</button>
         </div>
     </header>
@@ -192,8 +194,10 @@
     </div>
 
     <script>
+        let currentFile = 'capoui.txt'; // Fichier par défaut (en français)
+
         function loadText() {
-            fetch('capoui.txt')
+            fetch(currentFile)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erreur de chargement du fichier');
@@ -252,6 +256,16 @@
         // Fonction pour basculer le mode sombre
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+        }
+
+        // Fonction pour changer de langue
+        function setLanguage(language) {
+            if (language === 'en') {
+                currentFile = 'capoui-en.txt'; // Fichier en anglais
+            } else {
+                currentFile = 'capoui.txt'; // Retour au fichier français
+            }
+            loadText(); // Charger le fichier dans la nouvelle langue
         }
 
         // Écouteur d'événement pour le bouton "Mode Sombre"
