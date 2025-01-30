@@ -164,6 +164,11 @@
             font-family: 'GodOfWar', sans-serif;
         }
 
+        bug-d {
+            color: #ff5733;
+            font-family: 'GodOfWar', sans-serif;
+        }
+
         /* Texte en mode sombre */
         body.dark-mode pre {
             color: #fff;
@@ -180,6 +185,7 @@
     <header>
         <h3 id="header-title">Le Saint Livre Caplot</h3>
         <h1 id="header-main-title">La Caplot</h1>
+        <h1 id="bug-d">!ATTENTION! Quand vous mettez la langue en anglais, les nombre entiers naturels n'apparaissent pas dans la navigation des caps.</h1>
         <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
         <div class="button-container">
             <!-- Bouton pour changer la langue -->
@@ -294,6 +300,7 @@
                 document.getElementById('download-button').textContent = 'Download the Caplot';
                 document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
                 document.getElementById('header-main-title').textContent = 'The Caplot';
+                document.getElementById('bug-d').textContent = '!ATTENTION! When you change the language to English, natural numbers do not appear in heading navigation.';
                 document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
                 document.getElementById('nav-title').textContent = 'Cap Navigation';
                 if (document.getElementById('d-button').textContent == "Mode Sombre") {
@@ -309,6 +316,7 @@
                 document.getElementById('download-button').textContent = 'Télécharge la Caplot';
                 document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
                 document.getElementById('header-main-title').textContent = 'La Caplot';
+                document.getElementById('bug-d').textContent = '!ATTENTION! Quand vous mettez la langue en anglais, les nombre entiers naturels n'apparaissent pas dans la navigation des caps.';
                 document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
                 document.getElementById('nav-title').textContent = 'Navigation des Caps';
                 if (document.getElementById('d-button').textContent == "Dark Mode") {
