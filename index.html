@@ -45,6 +45,10 @@
             color: #fff;
         }
 
+        header h1, header h2, header h3 {
+            font-family: 'GodOfWar', sans-serif;
+        }
+
         header h1 {
             font-size: 45px;
             margin: 10px 0;
@@ -77,6 +81,7 @@
             border-radius: 5px;
             font-size: 16px;
             transition: 0.3s ease-in-out;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         .header-button:hover {
@@ -102,6 +107,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             max-height: 80vh;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         /* Section en mode sombre */
@@ -138,6 +144,7 @@
             text-align: center;
             font-size: 16px;
             transition: 0.3s;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         /* Liste des éléments en mode sombre */
@@ -154,6 +161,7 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             color: #2c3e50;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         /* Texte en mode sombre */
@@ -257,6 +265,12 @@
         // Fonction pour basculer le mode sombre
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+            const darkModeButton = document.querySelector('.dark-mode-button');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeButton.textContent = 'Mode Clair';
+            } else {
+                darkModeButton.textContent = 'Mode Sombre';
+            }
         }
 
         // Fonction pour changer de langue
