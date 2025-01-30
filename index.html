@@ -176,9 +176,9 @@
         <div class="button-container">
             <!-- Bouton pour changer la langue -->
             <button id="lang-button" class="header-button" onclick="toggleLanguage()">Mettre en anglais</button>
-            <a href="capoui.txt" download="Le saint graal" class="header-button">Télécharge la Caplot</a>
+            <a href="capoui.txt" download="Le saint graal" class="header-button" id="download-button">Télécharge la Caplot</a>
             <!-- Bouton pour basculer le mode sombre -->
-            <button class="header-button dark-mode-button">Mode Sombre</button>
+            <button class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Sombre</button>
         </div>
     </header>
 
@@ -282,6 +282,8 @@
                 document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
                 document.getElementById('nav-title').textContent = 'Caps Navigation';
                 document.getElementById('lang-button').textContent = 'Put in French';
+                document.getElementById('download-button').textContent = 'Download the Caplot';
+                document.querySelector('.dark-mode-button').textContent = 'Dark Mode';
             } else {
                 // Texte en français
                 document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
@@ -289,13 +291,13 @@
                 document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
                 document.getElementById('nav-title').textContent = 'Navigation des Caps';
                 document.getElementById('lang-button').textContent = 'Mettre en anglais';
+                document.getElementById('download-button').textContent = 'Télécharge la Caplot';
+                document.querySelector('.dark-mode-button').textContent = 'Mode Sombre';
             }
         }
 
-        // Écouteur d'événement pour le bouton "Mode Sombre"
-        document.querySelector('.dark-mode-button').addEventListener('click', toggleDarkMode);
-
-        window.onload = loadText;
+        // Charger le texte au démarrage
+        loadText();
     </script>
 
 </body>
