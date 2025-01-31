@@ -280,22 +280,6 @@
             }
         }
 
-        function downloadCapoui() {
-            let button = document.getElementById('download-button');
-
-            if (!button) return; // Vérifie si le bouton existe
-
-            let fileName = (button.textContent === "Télécharge la Caplot") ? "capoui.txt" : "capoui-en.txt";
-
-            let link = document.createElement("a");
-            link.href = fileName;  // Assure-toi que les fichiers existent dans le même dossier que la page HTML
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            }
-        }
-
         // Fonction pour basculer le mode sombre
         function toggleDarkMode() {
             isDarkMode = !isDarkMode;
