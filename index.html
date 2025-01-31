@@ -196,7 +196,7 @@
         <div class="button-container">
             <!-- Bouton pour changer la langue -->
             <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
-            <a href="capoui.txt" download="Le saint graal" class="header-button" id="download-button">Télécharge la Caplot</a>
+            <button onclick="downloadCapoui()">Click me</button>
             <!-- Bouton pour basculer le mode sombre -->
             <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
         </div>
@@ -277,6 +277,22 @@
             const capEl = document.getElementById(capId);
             if (capEl) {
                 capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function downloadCapoui() {
+            let button = document.getElementById('download-button');
+
+            if (!button) return; // Vérifie si le bouton existe
+
+            let fileName = (button.textContent === "Télécharge la Caplot") ? "capoui.txt" : "capoui-en.txt";
+
+            let link = document.createElement("a");
+            link.href = fileName;  // Assure-toi que les fichiers existent dans le même dossier que la page HTML
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
             }
         }
 
