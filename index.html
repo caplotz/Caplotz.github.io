@@ -113,7 +113,7 @@
         /* Section en mode sombre */
         body.dark-mode section {
             background-color: #444;
-            color: #fff;
+            color: ##2c3e50;
         }
 
         #navigation {
@@ -145,21 +145,15 @@
             font-size: 16px;
             transition: 0.3s;
             font-family: 'GodOfWar', sans-serif;
-            order: 2px solid black;
-            border-radius: 5px;
         }
 
         /* Liste des éléments en mode sombre */
         body.dark-mode #navigation ul li {
             background-color: #666;
-            order: 2px solid black;
-            border-radius: 5px;
         }
 
         #navigation ul li:hover {
             background-color: #febd23;
-            order: 2px solid black;
-            border-radius: 5px;
         }
 
         pre {
@@ -190,26 +184,14 @@
             font-weight: bold;
         }
 
-        /* Style pour l'élément actif dans la navigation */
-        #navigation ul li.active {
-            background-color: #febd23;
-            color: black;
-            border: 2px solid black;
-            border-radius: 5px;
-        }
-
         /* Dans le mode sombre */
 body.dark-mode #navigation ul li {
     background-color: #ff9e40; /* Couleur des boutons du header en mode sombre */
     color: black; /* Texte en noir */
-    order: 2px solid black;
-            border-radius: 5px;
 }
 
 body.dark-mode #navigation ul li:hover {
     background-color: #febd23; /* Survol des boutons en mode sombre */
-    order: 2px solid black;
-            border-radius: 5px;
 }
 
         
@@ -383,36 +365,6 @@ body.dark-mode #navigation ul li:hover {
         }
 
         window.onload = loadText;
-        
-        // Fonction de surbrillance des caps visibles dans la navigation
-        function checkVisibleCaps() {
-            const caps = document.querySelectorAll('.cap-text');
-            const capListItems = document.querySelectorAll('#navigation ul li');
-            
-            caps.forEach((cap, index) => {
-                const capId = cap.id;
-                const capElement = document.getElementById(capId);
-                const capListItem = capListItems[index];
-                
-                const rect = capElement.getBoundingClientRect();
-                const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-
-                if (isVisible) {
-                    capListItem.classList.add('active');
-                } else {
-                    capListItem.classList.remove('active');
-                }
-            });
-        }
-
-        // Vérifie quel cap est visible lors du défilement
-        window.addEventListener('scroll', checkVisibleCaps);
-
-        // Vérifie lors du chargement initial
-        window.onload = function() {
-            loadText();
-            checkVisibleCaps();
-        };
     </script>
 
 </body>
