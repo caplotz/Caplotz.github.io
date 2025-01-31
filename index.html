@@ -113,7 +113,7 @@
         /* Section en mode sombre */
         body.dark-mode section {
             background-color: #444;
-            color: ##2c3e50;
+            color: #fff;
         }
 
         #navigation {
@@ -182,6 +182,12 @@
         .attention {
             color: #ff5733;
             font-weight: bold;
+        }
+
+        /* Style pour l'élément actif dans la navigation */
+        #navigation ul li.active {
+            background-color: #febd23;
+            color: black;
         }
 
         /* Dans le mode sombre */
@@ -365,6 +371,36 @@ body.dark-mode #navigation ul li:hover {
         }
 
         window.onload = loadText;
+        
+        // Fonction de surbrillance des caps visibles dans la navigation
+        function checkVisibleCaps() {
+            const caps = document.querySelectorAll('.cap-text');
+            const capListItems = document.querySelectorAll('#navigation ul li');
+            
+            caps.forEach((cap, index) => {
+                const capId = cap.id;
+                const capElement = document.getElementById(capId);
+                const capListItem = capListItems[index];
+                
+                const rect = capElement.getBoundingClientRect();
+                const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+                if (isVisible) {
+                    capListItem.classList.add('active');
+                } else {
+                    capListItem.classList.remove('active');
+                }
+            });
+        }
+
+        // Vérifie quel cap est visible lors du défilement
+        window.addEventListener('scroll', checkVisibleCaps);
+
+        // Vérifie lors du chargement initial
+        window.onload = function() {
+            loadText();
+            checkVisibleCaps();
+        };
     </script>
 
 </body>
