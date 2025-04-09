@@ -90,4 +90,7 @@ et tu les fait partir dans des directions opposés.
 Des temples existe aussi dont 6 pour les Umakikok et 1 pour l'Umaki.
 Vous pouvez faire des cérémonies spéciales dans les temples, ils sont tous différents.
 Il y a aussi des escaliers avec 3 marches.
-Les marches sont très longues mais la hauteur est petite. La longueur est assez grosse. Elle doit permette 5 humains à embarquer dessus.
+Les marches sont très longues mais la hauteur est petite. 
+La longueur est assez grosse. Elle doit permette 3 humains moyen à embarquer dessus.
+
+- Cap 1.9
