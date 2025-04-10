@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>- La Caplot -</title>
-    <link rel="icon" href="B-removebg-preview.png"/>
+    <link rel="icon" href="B-removebg-preview.png">
     <style>
         @font-face {
             font-family: 'GodOfWar';
@@ -167,19 +167,21 @@
         }
 
         #navigation ul li.ere {
-            background-color: #66ff66;
-            color: #000;
+            background-color: #6fcf97;
+            color: black;
             font-weight: bold;
         }
 
         body.dark-mode #navigation ul li.ere {
-            background-color: #00cc66;
+            background-color: #27ae60;
+            color: black;
         }
 
         pre {
             font-size: 18px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            color: #2c3e50;
             font-family: 'GodOfWar', sans-serif;
         }
 
@@ -192,18 +194,17 @@
             color: #b4b4b4;
         }
 
-        .ere-text {
-            font-size: 22px;
-            color: green;
-            font-weight: bold;
-            display: block;
-            margin: 15px 0;
-        }
-
         .attention {
             color: #ff5733;
             font-weight: bold;
         }
+
+        .ere-text {
+            font-size: 20px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body class="dark-mode">
@@ -258,14 +259,19 @@
         const capes = [];
 
         lines.forEach((line, index) => {
-            if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
-                const capId = `cap-${index}`;
+            const capId = `cap-${index}`;
+
+            if (
+                line.startsWith('- Cap') ||
+                line.startsWith('- Café') ||
+                line.startsWith('- Roman') ||
+                line.startsWith('- Tobias')
+            ) {
                 formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId });
-            } else if (line.trim().startsWith('_--=== Ère')) {
-                const ereId = `ere-${index}`;
-                formattedLines.push(`<span class="ere-text" id="${ereId}">${line}</span>`);
-                capes.push({ name: line, id: ereId, isEre: true });
+                capes.push({ name: line, id: capId, type: 'cap' });
+            } else if (line.includes('Ère')) {
+                formattedLines.push(`<span class="ere-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'ere' });
             } else {
                 formattedLines.push(line);
             }
@@ -285,10 +291,15 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            if (cap.name.includes('Roman')) li.classList.add('roman');
-            else if (cap.name.includes('Tobias')) li.classList.add('tobias');
-            else if (cap.name.includes('Café')) li.classList.add('cafe');
-            else if (cap.isEre) li.classList.add('ere');
+            if (cap.name.includes('Roman')) {
+                li.classList.add('roman');
+            } else if (cap.name.includes('Tobias')) {
+                li.classList.add('tobias');
+            } else if (cap.name.includes('Café')) {
+                li.classList.add('cafe');
+            } else if (cap.type === 'ere') {
+                li.classList.add('ere');
+            }
 
             capList.appendChild(li);
         });
@@ -305,9 +316,7 @@
         isDarkMode = !isDarkMode;
         document.body.classList.toggle('dark-mode', isDarkMode);
         const darkModeButton = document.querySelector('.dark-mode-button');
-        darkModeButton.textContent = isDarkMode
-            ? (language === 'fr' ? 'Mode Clair' : 'Light Mode')
-            : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
+        darkModeButton.textContent = isDarkMode ? (language === 'fr' ? 'Mode Clair' : 'Light Mode') : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
     }
 
     function toggleLanguage() {
