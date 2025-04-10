@@ -152,7 +152,6 @@
             background-color: #febd23;
         }
 
-        /* Applied yellow color specifically to Roman, Tobias, and Café in the navigation */
         #navigation ul li.roman,
         #navigation ul li.tobias,
         #navigation ul li.cafe {
@@ -164,6 +163,17 @@
         body.dark-mode #navigation ul li.tobias,
         body.dark-mode #navigation ul li.cafe {
             background-color: #FFEA00;
+            color: black;
+        }
+
+        #navigation ul li.ere {
+            background-color: #6fcf97;
+            color: black;
+            font-weight: bold;
+        }
+
+        body.dark-mode #navigation ul li.ere {
+            background-color: #27ae60;
             color: black;
         }
 
@@ -186,6 +196,12 @@
 
         .attention {
             color: #ff5733;
+            font-weight: bold;
+        }
+
+        .ere-text {
+            font-size: 20px;
+            color: #27ae60;
             font-weight: bold;
         }
 
@@ -243,10 +259,19 @@
         const capes = [];
 
         lines.forEach((line, index) => {
-            if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
-                const capId = `cap-${index}`;
+            const capId = `cap-${index}`;
+
+            if (
+                line.startsWith('- Cap') ||
+                line.startsWith('- Café') ||
+                line.startsWith('- Roman') ||
+                line.startsWith('- Tobias')
+            ) {
                 formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId });
+                capes.push({ name: line, id: capId, type: 'cap' });
+            } else if (line.includes('Ère')) {
+                formattedLines.push(`<span class="ere-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'ere' });
             } else {
                 formattedLines.push(line);
             }
@@ -266,13 +291,14 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            // Add specific classes for Roman, Tobias, and Café to make them yellow in navigation
             if (cap.name.includes('Roman')) {
                 li.classList.add('roman');
             } else if (cap.name.includes('Tobias')) {
                 li.classList.add('tobias');
             } else if (cap.name.includes('Café')) {
                 li.classList.add('cafe');
+            } else if (cap.type === 'ere') {
+                li.classList.add('ere');
             }
 
             capList.appendChild(li);
