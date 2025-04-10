@@ -245,7 +245,7 @@
         lines.forEach((line, index) => {
             if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
                 const capId = `cap-${index}`;
-                formattedLines.push(<span class="cap-text" id="${capId}">${line}</span>);
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                 capes.push({ name: line, id: capId });
             } else {
                 formattedLines.push(line);
