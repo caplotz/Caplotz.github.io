@@ -1,37 +1,37 @@
 _--=== Ère Pan ===--_
 
-- Cap 0.1
+- Cap 00:01
 Au commencement il y avait 1 personne sur la planète, il s'appelait Arouhus.
 
-- Cap 0.2
+- Cap 00:02
 Arouhus n'avait pas de corps. Il avait une âme et un esprit.
 Il avait 2 yeux, un nez, une bouche et 2 oreilles.
 
-- Cap 0.3
+- Cap 00:03
 Ses 2 yeux servaient à voir, bien sûr, mais les 2 avaient des fonctions.
 Le droit permettait de controler les matières, le gauche de controler les conflits dont la guerre.
 
-- Cap 0.4
+- Cap 00:04
 Son nez, lui, ne servait pas à respirer car les Umaki ne respirent pas.
 Bref, son nez controlait la vie, cela inclus aussi les avantages comme la puissance, la conaissance.
 
-- Cap 0.5
+- Cap 00:05
 Elle sa bouche sert à controler la nature.
 Les Umaki ne mangent et ne boivent pas.
 
-- Cap 0.6
+- Cap 00:06
 Pour finir, ses 2 oreilles servent à entendre, oui, mais aussi à surveiller.
 L'oreille droite contrôlait et protégeait les divinités de toute éventualité. La gauche contrôle la metéo, les tempêtes, etc.
 
-- Cap 0.7
+- Cap 00:07
 Arouhus, controlait presque tout.
 Le reste était contrôlé par son âme elle même.
 
-- Cap 0.8
+- Cap 00:08
 Pour diviser son travail et le rendre plus facile, il créa des Umakikok ("KOK" signifiant Successeurs/es).
 Les Umakikok eux auraient chacun une partie de son corps.
 
-- Cap 0.9
+- Cap 00:09
 Ils seraient 6, pour les différencier, ils auraient tous des noms différents.
 Le premier s'appelerait Jirus (Jir = Matière / Us = Divinité) il aurait l'oeil droit d'Arouhus.
 Le deuxième s'appelerait Mayus (May = Hostilités / Us = Divinité) il aurait l'oeil gauche d'Arouhus.
@@ -40,47 +40,47 @@ Le quatrième s'appelerait Yanbus (Yanb = Monde / Us = Divinité) il aurait la b
 Le cinquième s'appelerait Padzus (Padz = Défendre / Us = Divinité) il aurait l'oreille droite d'Arouhus.
 Pour finir, le sixième s'appelerait Shinus (Shin = Température / Us = Divinité) il aurait l'oreille gauche d'Arouhus.
 
-- Cap 1.0
+- Cap 00:10
 Par contre, une partie de tout ces pouvoirs seraient donnés à l'Umaki. 
 Pour assurer le bon fonctionnement de la planète.
 
-- Cap 1.1
+- Cap 00:11
 Mais vu que les Umaki et les Umakikok s'ennuyaient.
 Il décidairent donc de créer Perk Umamo (Umamo = Humain / Perk = Parfait)
 Cela leurs prennurent 365 Jours, ce qui sera nommé un Pam (Pam = Anné)
 
-- Cap 1.2
+- Cap 00:12
 Quand les Umaki décidairent d'ajouter les Umamo Perk sur la planète,
 Il leurs manquaient des choses faire.
 
-- Cap 1.3
+- Cap 00:13
 Yanbus créa la nature.
 Il créa les Fôrets, des endroits calmes pour ce calmer.
 Il créa les Deserts, des endroits arides ou que la chaleure reigne.
 Il créa la neige, de la neige congelé ou la froideur reigne.
 Pour finir il créa les minéraux pour ajouter un équilibre à tout ça.
 
-- Cap 1.4
+- Cap 00:14
 Watus créa la conaissance.
 Il créa une langue parlable et écrivable avec des minéraux.
 La langue s'appela le Umamotilus (Umamo = Humain / Til = Langue / Us = Divinité)
 Pour apprendre la langue il créa un livre sacré, la Caplot.
 Les Umamos pourraient apprendre la religion, lire et écrire.
 
-- Cap 1.5
+- Cap 00:15
 Mayus décida de créer les émotions.
 Pour les mauvais Umamos il créa la tristesse, la souffrance, la peure et la colère.
 Pour les bons Umamos il créa la Joie, le bonheur' l'euphorie et d'autres émotions amusantes.
 Pour rendre la planète plus captivante.
 Il va aussi créer l'amour et la reproduction, un moyen de créer d'autres progénitures et avoir de la réjouissance.
 
-- Cap 1.6
+- Cap 00:16
 Mais pour créer la colère les mauvais esprit sont présent.
 Ils prennent possession de ton corps pendant un court instant d'environ quelque secondes.
 Pour corrompre ton esprit et te font faire une mauvaise action.
 Si tu es saint d'esprit, tu n'auras aucun trouble
 
-- Cap 1.7
+- Cap 00:17
 Le Rom-Tom est à l'intérieur de tout le monde
 Il possède une coquille noire protégeant les esprits malintentionnés de rentrer,
 Mais malheureusement un mauvais esprit à réussi à le corrompore.
@@ -91,11 +91,15 @@ Ces points sensibles que les mauvais esprits attaquent pour vous rendre faible.
 Une fois le point rouge attaqué, il disparait.
 À chaque fois que vous êtes attaqués votre protection devient de plus en plus petite.
 
-- Cap 1.8
+- Cap 00:18
 Si le Rom-Tom finit par détruire avec la coquille de protection.
-Vous devienderez une statue de pierre pour l'éternité.
+Vous devienderez de petit à petit une statue de pierre.
+Jusqu'a ce que vous prouvez quelque chose.
+Si vous mourrez avec la Rom-Tom brisé, vous devienderez une statu de pierre, 
+Sinon vous vous réincarnerez, vous aurez tout oublié.
+Watus vous créra à son image.
 
-- Cap 1.9
+- Cap 00:19
 Si vous avez causé beaucoup de mauvaise actions,
 il vous reste un chance pour réparer votre Rom-Tom.
 Les dieux peuvent décider d'envoyer une fausse âme, 
@@ -103,18 +107,44 @@ qui peut se déguiser en tout.
 Si vous ne passez pas le test vous aller devenir une statue de pierre.
 Si vous le passez votre Rom-Tom sera rétabli à 50%.
 
-- Cap 2
+- Cap 00:20
 Il y a des rituels pour éloigner les mauvais esprits.
 Comme le rituel de pureté, tu dois serrer tout tes doigts,
 Tu les met devant tes seins, tu les éloigne un peu de toi, tu mets tes doigts en V de chaque main,
 et tu les fait partir dans des directions opposés.
 
-- Cap 2.1
+- Cap 00:21
 Des temples existe aussi dont 6 pour les Umakikok et 1 pour l'Umaki.
 Vous pouvez faire des cérémonies spéciales dans les temples, ils sont tous différents.
 Il y a aussi des escaliers avec 3 marches. Elle permettes d'embarquer dans le monde spirituel.
 Les marches sont très longues mais la hauteur est petite. 
 La longueur est assez grosse. Elle doit permette 3 humains moyen à embarquer dessus.
 
-- Cap 2.2
+- Cap 00:22
+Les dieux décidairent d'envoyer des messagers, nommées des champions.
+Il y a 3 élus sur la planète terre.
 
+- Cap 00:23
+Café à été envoyé sur la planète terre pour devenir un général de guerre exceptionnel.
+Lui Roman, partage la religion.
+Lui Tobias, est un musicien hors-père il créé des chants religieux.
+
+- Cap 00:24
+Les dieux donnairent une seule règle aux élus,
+Ne pas être corrompu.
+
+- Roman 00:01
+Je suis heureux d'être arrivé sur la planète terre, je suis actuellement en Amérique,
+Par contre, je suis avec des gens peu cultivé.
+J'irais essayer d'aller les convaincre plus tard.
+
+- Tobias 00:01
+Je viens d'arriver en Europe, juste a coté de l'Asie
+J'essaie de faire chanter ces hommes préhistoriques.
+
+- Café 00:01
+Je suis arrivé à un endroit ou il fait trop chaud pour moi, je suis en Afrique, proche de l'australie.
+J'ai rencontré des individus étranges se battants.
+J'ai remarqué des gens en difficulté, donc, j'ai décidé de les aider.
+
+- Cap 00:25
