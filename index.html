@@ -167,6 +167,17 @@
             color: black;
         }
 
+        /* Applied orange color specifically to Cap */
+        #navigation ul li.cap {
+            background-color: orange;
+            color: black;
+        }
+
+        body.dark-mode #navigation ul li.cap {
+            background-color: #FF8C00;
+            color: black;
+        }
+
         pre {
             font-size: 18px;
             white-space: pre-wrap;
@@ -266,7 +277,7 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            // Apply specific highlighting for Roman, Tobias, and Café
+            // Apply specific highlighting for Roman, Tobias, Café, and Cap
             if (cap.name.includes('Roman')) {
                 li.classList.add('roman');
             } else if (cap.name.includes('Tobias')) {
