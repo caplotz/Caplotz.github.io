@@ -167,17 +167,6 @@
             color: black;
         }
 
-        /* Applied orange color specifically to Cap */
-        #navigation ul li.cap {
-            background-color: orange;
-            color: black;
-        }
-
-        body.dark-mode #navigation ul li.cap {
-            background-color: #FF8C00;
-            color: black;
-        }
-
         pre {
             font-size: 18px;
             white-space: pre-wrap;
@@ -255,8 +244,8 @@
 
         lines.forEach((line, index) => {
             if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
-                const capId = `cap-${index}`;  // Corrected the syntax error
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                const capId = cap-${index};
+                formattedLines.push(<span class="cap-text" id="${capId}">${line}</span>);
                 capes.push({ name: line, id: capId });
             } else {
                 formattedLines.push(line);
@@ -277,15 +266,13 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            // Apply specific highlighting for Roman, Tobias, Café, and Cap
+            // Add specific classes for Roman, Tobias, and Café to make them yellow in navigation
             if (cap.name.includes('Roman')) {
                 li.classList.add('roman');
             } else if (cap.name.includes('Tobias')) {
                 li.classList.add('tobias');
             } else if (cap.name.includes('Café')) {
                 li.classList.add('cafe');
-            } else if (cap.name.startsWith('Cap')) {
-                li.classList.add('cap');
             }
 
             capList.appendChild(li);
