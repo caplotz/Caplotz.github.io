@@ -167,18 +167,6 @@
             color: black;
         }
 
-        pre {
-            font-size: 18px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            color: #2c3e50;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode pre {
-            color: #fff;
-        }
-
         .cap-text {
             font-size: 14px;
             color: #b4b4b4;
@@ -189,15 +177,35 @@
             font-weight: bold;
         }
 
+        /* Ajout de couleurs pour Caps, Café, Tobias, et Roman */
+        .caps {
+            color: #FFA500; /* Orange pour Caps */
+        }
+
+        .cafe, .tobias, .roman {
+            color: #FFD700; /* Jaune pour Café, Tobias, et Roman */
+        }
+
     </style>
 </head>
 <body class="dark-mode">
 
 <header>
     <h3 id="header-title">Le Saint Livre Caplot</h3>
-    <h1 id="header-main-title">La Caplot</h1>
+    <h1 id="header-main-title">La <span class="caps">Caplot</span></h1>
     <small id="bug-d" class="attention">Si vous êtes sur téléphone, mettez votre écran en mode Paysage</small>
-    <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
+    <h2 id="header-subtitle">Explorez les <span class="caps">caps</span> sacrés à travers le texte divin.</h2>
     <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
     <div class="button-container">
-        <button id="lang-button" class="header-button" onclick="toggleLanguage
+        <button id="lang-button" class="header-button" onclick="toggleLanguage()">Changer de langue</button>
+    </div>
+</header>
+
+<section>
+    <h2><span class="cafe">Café</span> des mystères</h2>
+    <p>Les anciens ont parlé de <span class="tobias">Tobias</span> et de son voyage à travers les <span class="caps">caps</span> sacrés.</p>
+    <p>Le sage <span class="roman">Roman</span> nous guide à travers ces écrits sacrés.</p>
+</section>
+
+</body>
+</html>
