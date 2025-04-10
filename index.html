@@ -152,6 +152,21 @@
             background-color: #febd23;
         }
 
+        /* Applied yellow color specifically to Roman, Tobias, and Café in the navigation */
+        #navigation ul li.roman,
+        #navigation ul li.tobias,
+        #navigation ul li.cafe {
+            background-color: #FFD700;
+            color: black;
+        }
+
+        body.dark-mode #navigation ul li.roman,
+        body.dark-mode #navigation ul li.tobias,
+        body.dark-mode #navigation ul li.cafe {
+            background-color: #FFEA00;
+            color: black;
+        }
+
         pre {
             font-size: 18px;
             white-space: pre-wrap;
@@ -172,16 +187,6 @@
         .attention {
             color: #ff5733;
             font-weight: bold;
-        }
-
-        .cap-yellow {
-            background-color: #FFD700;
-            color: black;
-        }
-
-        body.dark-mode .cap-yellow {
-            background-color: #FFEA00;
-            color: black;
         }
 
     </style>
@@ -240,7 +245,7 @@
         lines.forEach((line, index) => {
             if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
                 const capId = `cap-${index}`;
-                formattedLines.push(`<span class="cap-text cap-yellow" id="${capId}">${line}</span>`);
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                 capes.push({ name: line, id: capId });
             } else {
                 formattedLines.push(line);
@@ -261,8 +266,14 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            // Apply the 'cap-yellow' class to all caps
-            li.classList.add('cap-yellow');
+            // Add specific classes for Roman, Tobias, and Café to make them yellow in navigation
+            if (cap.name.includes('Roman')) {
+                li.classList.add('roman');
+            } else if (cap.name.includes('Tobias')) {
+                li.classList.add('tobias');
+            } else if (cap.name.includes('Café')) {
+                li.classList.add('cafe');
+            }
 
             capList.appendChild(li);
         });
