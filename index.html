@@ -156,31 +156,15 @@
         #navigation ul li.roman,
         #navigation ul li.tobias,
         #navigation ul li.cafe {
-            background-color: #FFD700; /* Jaune pour Tobias */
+            background-color: #FFD700; /* Jaune */
             color: black;
-        }
-
-        #navigation ul li.cafe {
-            background-color: #28a745; /* Vert pour Café */
-        }
-
-        #navigation ul li.roman {
-            background-color: #007bff; /* Bleu pour Roman */
         }
 
         body.dark-mode #navigation ul li.roman,
         body.dark-mode #navigation ul li.tobias,
         body.dark-mode #navigation ul li.cafe {
-            background-color: #FFEA00; /* Jaune clair pour Tobias en mode sombre */
+            background-color: #FFEA00; /* Jaune clair en mode sombre */
             color: black;
-        }
-
-        body.dark-mode #navigation ul li.cafe {
-            background-color: #218838; /* Vert pour Café en mode sombre */
-        }
-
-        body.dark-mode #navigation ul li.roman {
-            background-color: #0069d9; /* Bleu pour Roman en mode sombre */
         }
 
         pre {
@@ -205,19 +189,6 @@
             font-weight: bold;
         }
 
-        /* Définir les couleurs dans le texte pour Tobias, Café, Roman */
-        .tobias-text {
-            color: #FFD700; /* Jaune */
-        }
-
-        .cafe-text {
-            color: #28a745; /* Vert */
-        }
-
-        .roman-text {
-            color: #007bff; /* Bleu */
-        }
-
     </style>
 </head>
 <body class="dark-mode">
@@ -229,125 +200,4 @@
     <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
     <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
     <div class="button-container">
-        <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
-        <a href="capoui-download.txt" download="Caplot.txt" class="header-button" id="download-button">Télécharge la Caplot</a>
-        <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
-    </div>
-</header>
-
-<div class="content">
-    <section>
-        <pre id="-content">Chargement du contenu...</pre>
-    </section>
-
-    <div id="navigation">
-        <h3 id="nav-title">Navigation des Caps</h3>
-        <ul id="cap-list"></ul>
-    </div>
-</div>
-
-<script>
-    let currentFile = 'capoui.txt'; // Fichier par défaut (en français)
-    let language = 'fr'; // Langue par défaut
-    let isDarkMode = true; // Etat initial du mode sombre
-
-    function loadText() {
-        fetch(currentFile)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur de chargement du fichier');
-                }
-                return response.text();
-            })
-            .then(text => {
-                const { formattedText, capes } = formatTextAndExtractCaps(text);
-                document.getElementById('-content').innerHTML = formattedText;
-                populateCapList(capes);
-            })
-            .catch(error => {
-                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-            });
-    }
-
-    function formatTextAndExtractCaps(text) {
-        const lines = text.split('\n');
-        const formattedLines = [];
-        const capes = [];
-        
-        lines.forEach((line, index) => {
-            // Conversion de nombres complets (2, 9, 4, etc.)
-            line = line.replace(/(\d+)(?=\s*\.|\n)/g, function(match) {
-                return match;  // Les nombres sont affichés tels quels sans modification
-            });
-
-            if (line.startsWith('- Cap')) {
-                const capId = `cap-${index}`;
-                let capClass = '';
-                if (line.includes('Tobias')) {
-                    capClass = 'tobias-text';
-                } else if (line.includes('Café')) {
-                    capClass = 'cafe-text';
-                } else if (line.includes('Roman')) {
-                    capClass = 'roman-text';
-                }
-                formattedLines.push(`<span class="cap-text ${capClass}" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId });
-            } else {
-                formattedLines.push(line);
-            }
-        });
-        
-        return {
-            formattedText: formattedLines.join('<br>'), 
-            capes
-        };
-    }
-
-    function populateCapList(capes) {
-        const capList = document.getElementById('cap-list');
-        capList.innerHTML = '';
-        capes.forEach(cap => {
-            const li = document.createElement('li');
-            li.textContent = cap.name;
-            li.onclick = () => scrollToCap(cap.id);
-            if (cap.name.includes('Tobias')) {
-                li.classList.add('tobias');
-            } else if (cap.name.includes('Café')) {
-                li.classList.add('cafe');
-            } else if (cap.name.includes('Roman')) {
-                li.classList.add('roman');
-            }
-            capList.appendChild(li);
-        });
-    }
-
-    function scrollToCap(capId) {
-        const cap = document.getElementById(capId);
-        if (cap) {
-            cap.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    function toggleLanguage() {
-        if (language === 'fr') {
-            language = 'en';
-            currentFile = 'capoui-en.txt';
-            loadText();
-        } else {
-            language = 'fr';
-            currentFile = 'capoui.txt';
-            loadText();
-        }
-    }
-
-    function toggleDarkMode() {
-        isDarkMode = !isDarkMode;
-        document.body.classList.toggle('dark-mode', isDarkMode);
-        document.getElementById('d-button').textContent = isDarkMode ? 'Mode Clair' : 'Mode Sombre';
-    }
-
-    window.onload = loadText;
-</script>
-
-</body>
-</html>
+        <button id="lang-button" class="header-button" onclick="toggleLanguage
