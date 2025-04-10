@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>- La Caplot -</title>
-    <link rel="icon" href="B-removebg-preview.png">
+    <link rel="icon" href="B-removebg-preview.png"/>
     <style>
         @font-face {
             font-family: 'GodOfWar';
             src: url('GODOFWAR.TTF') format('truetype');
-            font-weight: normal;
-            font-style: normal;
         }
 
         body {
             font-family: 'GodOfWar', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
@@ -34,8 +30,6 @@
             color: #2c3e50;
             text-align: center;
             padding: 20px 0;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode header {
@@ -49,7 +43,6 @@
 
         header h1 {
             font-size: 45px;
-            margin: 10px 0;
         }
 
         header h2 {
@@ -59,7 +52,6 @@
 
         header h3 {
             font-size: 50px;
-            font-weight: bold;
             margin: 0;
         }
 
@@ -89,11 +81,8 @@
         .content {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            width: 80%;
-            flex: 1;
             padding: 20px;
-            margin: auto;
+            flex: 1;
         }
 
         section {
@@ -105,12 +94,10 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             max-height: 80vh;
-            font-family: 'GodOfWar', sans-serif;
         }
 
         body.dark-mode section {
             background-color: #444;
-            color: #f8f9fa;
         }
 
         #navigation {
@@ -128,28 +115,16 @@
 
         body.dark-mode #navigation {
             background-color: #555;
-            color: #fff;
         }
 
         #navigation ul li {
             margin: 10px 0;
             cursor: pointer;
             padding: 10px;
-            background-color: #febd77;
             border-radius: 5px;
             text-align: center;
             font-size: 16px;
             transition: 0.3s;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode #navigation ul li {
-            background-color: #ff9e40;
-            color: black;
-        }
-
-        #navigation ul li:hover {
-            background-color: #febd23;
         }
 
         #navigation ul li.roman,
@@ -159,39 +134,29 @@
             color: black;
         }
 
-        body.dark-mode #navigation ul li.roman,
-        body.dark-mode #navigation ul li.tobias,
-        body.dark-mode #navigation ul li.cafe {
-            background-color: #FFEA00;
-            color: black;
-        }
-
         #navigation ul li.ere {
-            background-color: #6fcf97;
-            color: black;
+            background-color: #2ecc71;
+            color: white;
             font-weight: bold;
         }
 
-        body.dark-mode #navigation ul li.ere {
-            background-color: #27ae60;
+        #navigation ul li.cap {
+            background-color: #ff9e40;
             color: black;
+        }
+
+        body.dark-mode #navigation ul li.cap {
+            background-color: #febd59;
         }
 
         pre {
             font-size: 18px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            color: #2c3e50;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode pre {
-            color: #fff;
         }
 
         .cap-text {
             font-size: 14px;
-            color: #b4b4b4;
         }
 
         .attention {
@@ -199,9 +164,9 @@
             font-weight: bold;
         }
 
-        .ere-text {
-            font-size: 20px;
-            color: #27ae60;
+        .ere-title {
+            color: #2ecc71;
+            font-size: 24px;
             font-weight: bold;
         }
 
@@ -259,19 +224,24 @@
         const capes = [];
 
         lines.forEach((line, index) => {
-            const capId = `cap-${index}`;
+            let capId = `cap-${index}`;
 
-            if (
-                line.startsWith('- Cap') ||
-                line.startsWith('- Café') ||
-                line.startsWith('- Roman') ||
-                line.startsWith('- Tobias')
-            ) {
+            if (line.startsWith('_--=== ') && line.includes('Ère')) {
+                // Traitement Ère
+                formattedLines.push(`<span class="ere-title" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'ere' });
+            } else if (line.startsWith('- Cap')) {
                 formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                 capes.push({ name: line, id: capId, type: 'cap' });
-            } else if (line.includes('Ère')) {
-                formattedLines.push(`<span class="ere-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'ere' });
+            } else if (line.startsWith('- Roman')) {
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'roman' });
+            } else if (line.startsWith('- Tobias')) {
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'tobias' });
+            } else if (line.startsWith('- Café')) {
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId, type: 'cafe' });
             } else {
                 formattedLines.push(line);
             }
@@ -291,14 +261,9 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            if (cap.name.includes('Roman')) {
-                li.classList.add('roman');
-            } else if (cap.name.includes('Tobias')) {
-                li.classList.add('tobias');
-            } else if (cap.name.includes('Café')) {
-                li.classList.add('cafe');
-            } else if (cap.type === 'ere') {
-                li.classList.add('ere');
+            // Appliquer classes selon le type
+            if (cap.type) {
+                li.classList.add(cap.type);
             }
 
             capList.appendChild(li);
