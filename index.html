@@ -9,8 +9,6 @@
         @font-face {
             font-family: 'GodOfWar';
             src: url('GODOFWAR.TTF') format('truetype');
-            font-weight: normal;
-            font-style: normal;
         }
 
         body {
@@ -24,7 +22,6 @@
             height: 100vh;
         }
 
-        /* Mode sombre */
         body.dark-mode {
             background-color: #333;
             color: #f8f9fa;
@@ -39,7 +36,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Header en mode sombre */
         body.dark-mode header {
             background-color: #555;
             color: #fff;
@@ -81,7 +77,6 @@
             border-radius: 5px;
             font-size: 16px;
             transition: 0.3s ease-in-out;
-            font-family: 'GodOfWar', sans-serif;
         }
 
         .header-button:hover {
@@ -107,10 +102,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             max-height: 80vh;
-            font-family: 'GodOfWar', sans-serif;
         }
 
-        /* Section en mode sombre */
         body.dark-mode section {
             background-color: #444;
             color: ##2c3e50;
@@ -129,7 +122,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Navigation en mode sombre */
         body.dark-mode #navigation {
             background-color: #555;
             color: #fff;
@@ -143,23 +135,19 @@
             border-radius: 5px;
             text-align: center;
             font-size: 16px;
-            transition: 0.3s;
-            font-family: 'GodOfWar', sans-serif;
-            order: 2px solid black;
-            border-radius: 5px;
         }
 
-        /* Liste des éléments en mode sombre */
         body.dark-mode #navigation ul li {
-            background-color: #666;
-            order: 2px solid black;
-            border-radius: 5px;
+            background-color: #ff9e40;
+            color: black;
+        }
+
+        body.dark-mode #navigation ul li:hover {
+            background-color: #febd23;
         }
 
         #navigation ul li:hover {
             background-color: #febd23;
-            order: 2px solid black;
-            border-radius: 5px;
         }
 
         pre {
@@ -167,20 +155,8 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             color: #2c3e50;
-            font-family: 'GodOfWar', sans-serif;
         }
 
-        bug-d {
-            color: #ff5733;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        contact {
-            color: #ff5733;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        /* Texte en mode sombre */
         body.dark-mode pre {
             color: #fff;
         }
@@ -195,37 +171,33 @@
             font-weight: bold;
         }
 
-        /* Dans le mode sombre */
-body.dark-mode #navigation ul li {
-    background-color: #ff9e40; /* Couleur des boutons du header en mode sombre */
-    color: black; /* Texte en noir */
-    order: 2px solid black;
-            border-radius: 5px;
-}
+        .cap-cafe {
+            background-color: #8B4513;
+            color: white;
+        }
 
-body.dark-mode #navigation ul li:hover {
-    background-color: #febd23; /* Survol des boutons en mode sombre */
-    order: 2px solid black;
-            border-radius: 5px;
-}
+        .cap-roman {
+            background-color: #4682B4;
+            color: white;
+        }
 
-        
+        .cap-tobias {
+            background-color: #FFD700;
+            color: black;
+        }
     </style>
 </head>
-<body class=dark-mode>
+<body class="dark-mode">
 
     <header>
         <h3 id="header-title">Le Saint Livre Caplot</h3>
         <h1 id="header-main-title">La Caplot</h1>
         <small id="bug-d" class="attention">Si vous êtes sur téléphone, mettez votre écran en mode Paysage</small>
         <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
-        <small> </small>
-                <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
+        <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
         <div class="button-container">
-            <!-- Bouton pour changer la langue -->
             <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
             <a href="capoui-download.txt" download="Caplot.txt" class="header-button" id="download-button">Télécharge la Caplot</a>
-            <!-- Bouton pour basculer le mode sombre -->
             <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
         </div>
     </header>
@@ -234,7 +206,6 @@ body.dark-mode #navigation ul li:hover {
         <section>
             <pre id="-content">Chargement du contenu...</pre>
         </section>
-
         <div id="navigation">
             <h3 id="nav-title">Navigation des Caps</h3>
             <ul id="cap-list"></ul>
@@ -242,16 +213,14 @@ body.dark-mode #navigation ul li:hover {
     </div>
 
     <script>
-        let currentFile = 'capoui.txt'; // Fichier par défaut (en français)
-        let language = 'fr'; // Langue par défaut
-        let isDarkMode = true; // Etat initial du mode sombre
+        let currentFile = 'capoui.txt';
+        let language = 'fr';
+        let isDarkMode = true;
 
         function loadText() {
             fetch(currentFile)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erreur de chargement du fichier');
-                    }
+                    if (!response.ok) throw new Error('Erreur de chargement du fichier');
                     return response.text();
                 })
                 .then(text => {
@@ -268,14 +237,14 @@ body.dark-mode #navigation ul li:hover {
             const lines = text.split('\n');
             const formattedLines = [];
             const capes = [];
-            
-            lines.forEach((line, index) => {
-                // Conversion de nombres complets (2, 9, 4, etc.)
-                line = line.replace(/(\d+)(?=\s*\.|\n)/g, function(match) {
-                    return match;  // Les nombres sont affichés tels quels sans modification
-                });
 
-                if (line.startsWith('- Cap')) {
+            lines.forEach((line, index) => {
+                if (
+                    line.startsWith('- Cap') ||
+                    line.startsWith('- Café') ||
+                    line.startsWith('- Roman') ||
+                    line.startsWith('- Tobias')
+                ) {
                     const capId = `cap-${index}`;
                     formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
                     capes.push({ name: line, id: capId });
@@ -283,9 +252,9 @@ body.dark-mode #navigation ul li:hover {
                     formattedLines.push(line);
                 }
             });
-            
+
             return {
-                formattedText: formattedLines.join('<br>'), 
+                formattedText: formattedLines.join('<br>'),
                 capes
             };
         }
@@ -297,6 +266,15 @@ body.dark-mode #navigation ul li:hover {
                 const li = document.createElement('li');
                 li.textContent = cap.name;
                 li.onclick = () => scrollToCap(cap.id);
+
+                if (cap.name.startsWith('- Café')) {
+                    li.classList.add('cap-cafe');
+                } else if (cap.name.startsWith('- Roman')) {
+                    li.classList.add('cap-roman');
+                } else if (cap.name.startsWith('- Tobias')) {
+                    li.classList.add('cap-tobias');
+                }
+
                 capList.appendChild(li);
             });
         }
@@ -308,28 +286,21 @@ body.dark-mode #navigation ul li:hover {
             }
         }
 
-        // Fonction pour basculer le mode sombre
         function toggleDarkMode() {
             isDarkMode = !isDarkMode;
             document.body.classList.toggle('dark-mode', isDarkMode);
 
-            const darkModeButton = document.querySelector('.dark-mode-button');
-            if (isDarkMode) {
-                darkModeButton.textContent = language === 'fr' ? 'Mode Clair' : 'Light Mode';
-            } else {
-                darkModeButton.textContent = language === 'fr' ? 'Mode Sombre' : 'Dark Mode';
-            }
+            const darkModeButton = document.getElementById('d-button');
+            darkModeButton.textContent = isDarkMode
+                ? (language === 'fr' ? 'Mode Clair' : 'Light Mode')
+                : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
         }
 
-        // Fonction pour basculer entre l'anglais et le français
         function toggleLanguage() {
             if (language === 'fr') {
                 language = 'en';
-                currentFile = 'capoui-en.txt'; // Le fichier en anglais
-
-                // Essayer de charger le fichier en anglais, sinon charger celui en français
+                currentFile = 'capoui-en.txt';
                 loadTextWithFallback();
-
                 document.getElementById('lang-button').textContent = 'Mettre en français';
                 document.getElementById('download-button').textContent = 'Download the Caplot';
                 document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
@@ -338,14 +309,10 @@ body.dark-mode #navigation ul li:hover {
                 document.getElementById('contact').textContent = "Contact us at: caplot.help@hotmail.com (1-5 Business Days)";
                 document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
                 document.getElementById('nav-title').textContent = 'Cap Navigation';
-                if (document.getElementById('d-button').textContent == "Mode Sombre") {
-                document.getElementById('d-button').textContent = "Dark Mode"
-                } else if  (document.getElementById('d-button').textContent == "Mode Clair") {
-                document.getElementById('d-button').textContent = "Light Mode"
-                    }
+                document.getElementById('d-button').textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
             } else {
                 language = 'fr';
-                currentFile = 'capoui.txt'; // Fichier en français
+                currentFile = 'capoui.txt';
                 loadText();
                 document.getElementById('lang-button').textContent = 'Put it in english';
                 document.getElementById('download-button').textContent = 'Télécharge la Caplot';
@@ -355,11 +322,7 @@ body.dark-mode #navigation ul li:hover {
                 document.getElementById('contact').textContent = 'Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)';
                 document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
                 document.getElementById('nav-title').textContent = 'Navigation des Caps';
-                if (document.getElementById('d-button').textContent == "Dark Mode") {
-                document.getElementById('d-button').textContent = "Mode Sombre"
-                } else if  (document.getElementById('d-button').textContent == "Light Mode") {
-                document.getElementById('d-button').textContent = "Mode Clair"
-                    }
+                document.getElementById('d-button').textContent = isDarkMode ? 'Mode Clair' : 'Mode Sombre';
             }
         }
 
@@ -367,7 +330,7 @@ body.dark-mode #navigation ul li:hover {
             fetch(currentFile)
                 .then(response => {
                     if (!response.ok) {
-                        currentFile = 'capoui.txt'; // Revenir au fichier français si l'anglais échoue
+                        currentFile = 'capoui.txt';
                         return fetch(currentFile);
                     }
                     return response;
