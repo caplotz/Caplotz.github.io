@@ -160,11 +160,6 @@
             font-family: 'GodOfWar', sans-serif;
         }
 
-        bug-d, contact {
-            color: #ff5733;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
         body.dark-mode pre {
             color: #fff;
         }
@@ -179,36 +174,16 @@
             font-weight: bold;
         }
 
-        /* COULEURS PERSONNALISÉES POUR LES CAPS */
-        .cap-cafe {
-            background-color: #5C4033;
-            color: white;
-        }
-
-        .cap-roman {
-            background-color: #1E90FF;
-            color: white;
-        }
-
-        .cap-tobias {
+        .cap-yellow {
             background-color: #FFD700;
             color: black;
         }
 
-        body.dark-mode .cap-cafe {
-            background-color: #7B3F00;
-            color: white;
-        }
-
-        body.dark-mode .cap-roman {
-            background-color: #4682B4;
-            color: white;
-        }
-
-        body.dark-mode .cap-tobias {
+        body.dark-mode .cap-yellow {
             background-color: #FFEA00;
             color: black;
         }
+
     </style>
 </head>
 <body class="dark-mode">
@@ -265,7 +240,7 @@
         lines.forEach((line, index) => {
             if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
                 const capId = `cap-${index}`;
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                formattedLines.push(`<span class="cap-text cap-yellow" id="${capId}">${line}</span>`);
                 capes.push({ name: line, id: capId });
             } else {
                 formattedLines.push(line);
@@ -286,13 +261,8 @@
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
 
-            if (cap.name.startsWith('- Café')) {
-                li.classList.add('cap-cafe');
-            } else if (cap.name.startsWith('- Roman')) {
-                li.classList.add('cap-roman');
-            } else if (cap.name.startsWith('- Tobias')) {
-                li.classList.add('cap-tobias');
-            }
+            // Apply the 'cap-yellow' class to all caps
+            li.classList.add('cap-yellow');
 
             capList.appendChild(li);
         });
