@@ -1,374 +1,203 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>- La Caplot -</title>
-    <link rel="icon" href="B-removebg-preview.png">
-    <style>
-        @font-face {
-            font-family: 'GodOfWar';
-            src: url('GODOFWAR.TTF') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'GodOfWar', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        body.dark-mode {
-            background-color: #333;
-            color: #f8f9fa;
-        }
-
-        header {
-            background-color: #febd59;
-            color: #2c3e50;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode header {
-            background-color: #555;
-            color: #fff;
-        }
-
-        header h1, header h2, header h3 {
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        header h1 {
-            font-size: 45px;
-            margin: 10px 0;
-        }
-
-        header h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        header h3 {
-            font-size: 50px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .header-button {
-            background-color: #ff9e40;
-            color: black;
-            padding: 10px 15px;
-            text-decoration: none;
-            border: 2px solid black;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: 0.3s ease-in-out;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        .header-button:hover {
-            background-color: #febd23;
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            width: 80%;
-            flex: 1;
-            padding: 20px;
-            margin: auto;
-        }
-
-        section {
-            max-width: 800px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            width: 70%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            max-height: 80vh;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode section {
-            background-color: #444;
-            color: #f8f9fa;
-        }
-
-        #navigation {
-            margin-left: 20px;
-            width: 25%;
-            padding: 20px;
-            background-color: #ecf0f1;
-            border-radius: 10px;
-            position: sticky;
-            top: 20px;
-            height: 60vh;
-            overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode #navigation {
-            background-color: #555;
-            color: #fff;
-        }
-
-        #navigation ul li {
-            margin: 10px 0;
-            cursor: pointer;
-            padding: 10px;
-            background-color: #febd77;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-            transition: 0.3s;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode #navigation ul li {
-            background-color: #ff9e40;
-            color: black;
-        }
-
-        #navigation ul li:hover {
-            background-color: #febd23;
-        }
-
-        #navigation ul li.roman,
-        #navigation ul li.tobias,
-        #navigation ul li.cafe {
-            background-color: #FFD700;
-            color: black;
-        }
-
-        body.dark-mode #navigation ul li.roman,
-        body.dark-mode #navigation ul li.tobias,
-        body.dark-mode #navigation ul li.cafe {
-            background-color: #FFEA00;
-            color: black;
-        }
-
-        #navigation ul li.ere {
-            background-color: #6fcf97;
-            color: black;
-            font-weight: bold;
-        }
-
-        body.dark-mode #navigation ul li.ere {
-            background-color: #27ae60;
-            color: black;
-        }
-
-        pre {
-            font-size: 18px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            color: #2c3e50;
-            font-family: 'GodOfWar', sans-serif;
-        }
-
-        body.dark-mode pre {
-            color: #fff;
-        }
-
-        .cap-text {
-            font-size: 14px;
-            color: #b4b4b4;
-        }
-
-        .attention {
-            color: #ff5733;
-            font-weight: bold;
-        }
-
-        .ere-text {
-            font-size: 20px;
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-    </style>
-</head>
-<body class="dark-mode">
-
-<header>
-    <h3 id="header-title">Le Saint Livre Caplot</h3>
-    <h1 id="header-main-title">La Caplot</h1>
-    <small id="bug-d" class="attention">Si vous êtes sur téléphone, mettez votre écran en mode Paysage</small>
-    <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
-    <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
-    <div class="button-container">
-        <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
-        <a href="capoui-download.txt" download="Caplot.txt" class="header-button" id="download-button">Télécharge la Caplot</a>
-        <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
-    </div>
-</header>
-
-<div class="content">
-    <section>
-        <pre id="-content">Chargement du contenu...</pre>
-    </section>
-    <div id="navigation">
-        <h3 id="nav-title">Navigation des Caps</h3>
-        <ul id="cap-list"></ul>
-    </div>
-</div>
-
-<script>
-    let currentFile = 'capoui.txt';
-    let language = 'fr';
-    let isDarkMode = true;
-
-    function loadText() {
-        fetch(currentFile)
-            .then(response => {
-                if (!response.ok) throw new Error('Erreur de chargement du fichier');
-                return response.text();
-            })
-            .then(text => {
-                const { formattedText, capes } = formatTextAndExtractCaps(text);
-                document.getElementById('-content').innerHTML = formattedText;
-                populateCapList(capes);
-            })
-            .catch(error => {
-                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-            });
-    }
-
-    function formatTextAndExtractCaps(text) {
-        const lines = text.split('\n');
-        const formattedLines = [];
-        const capes = [];
-
-        lines.forEach((line, index) => {
-            const capId = `cap-${index}`;
-
-            if (
-                line.startsWith('- Cap') ||
-                line.startsWith('- Café') ||
-                line.startsWith('- Roman') ||
-                line.startsWith('- Tobias')
-            ) {
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'cap' });
-            } else if (line.includes('Ère')) {
-                formattedLines.push(`<span class="ere-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'ere' });
-            } else {
-                formattedLines.push(line);
-            }
-        });
-
-        return {
-            formattedText: formattedLines.join('<br>'),
-            capes
-        };
-    }
-
-    function populateCapList(capes) {
-        const capList = document.getElementById('cap-list');
-        capList.innerHTML = '';
-        capes.forEach(cap => {
-            const li = document.createElement('li');
-            li.textContent = cap.name;
-            li.onclick = () => scrollToCap(cap.id);
-
-            if (cap.name.includes('Roman')) {
-                li.classList.add('roman');
-            } else if (cap.name.includes('Tobias')) {
-                li.classList.add('tobias');
-            } else if (cap.name.includes('Café')) {
-                li.classList.add('cafe');
-            } else if (cap.type === 'ere') {
-                li.classList.add('ere');
-            }
-
-            capList.appendChild(li);
-        });
-    }
-
-    function scrollToCap(capId) {
-        const capEl = document.getElementById(capId);
-        if (capEl) {
-            capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    function toggleDarkMode() {
-        isDarkMode = !isDarkMode;
-        document.body.classList.toggle('dark-mode', isDarkMode);
-        const darkModeButton = document.querySelector('.dark-mode-button');
-        darkModeButton.textContent = isDarkMode ? (language === 'fr' ? 'Mode Clair' : 'Light Mode') : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
-    }
-
-    function toggleLanguage() {
-        if (language === 'fr') {
-            language = 'en';
-            currentFile = 'capoui-en.txt';
-            loadTextWithFallback();
-            document.getElementById('lang-button').textContent = 'Mettre en français';
-            document.getElementById('download-button').textContent = 'Download the Caplot';
-            document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
-            document.getElementById('header-main-title').textContent = 'The Caplot';
-            document.getElementById('bug-d').textContent = "If you're on a phone, put your screen in landscape mode";
-            document.getElementById('contact').textContent = "Contact us at: caplot.help@hotmail.com (1-5 Business Days)";
-            document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
-            document.getElementById('nav-title').textContent = 'Cap Navigation';
-        } else {
-            language = 'fr';
-            currentFile = 'capoui.txt';
-            loadText();
-            document.getElementById('lang-button').textContent = 'Put it in english';
-            document.getElementById('download-button').textContent = 'Télécharge la Caplot';
-            document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
-            document.getElementById('header-main-title').textContent = 'La Caplot';
-            document.getElementById('bug-d').textContent = 'Si vous êtes sur téléphone, mettez votre écran en mode Paysage';
-            document.getElementById('contact').textContent = 'Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)';
-            document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
-            document.getElementById('nav-title').textContent = 'Navigation des Caps';
-        }
-    }
-
-    function loadTextWithFallback() {
-        fetch(currentFile)
-            .then(response => {
-                if (!response.ok) {
-                    currentFile = 'capoui.txt';
-                    return fetch(currentFile);
-                }
-                return response;
-            })
-            .then(response => response.text())
-            .then(text => {
-                const { formattedText, capes } = formatTextAndExtractCaps(text);
-                document.getElementById('-content').innerHTML = formattedText;
-                populateCapList(capes);
-            })
-            .catch(error => {
-                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-            });
-    }
-
-    window.onload = loadText;
-</script>
-
-</body>
-</html>
+_--=== Ère Pan ===--_
+ 
+ - Cap 00:01
+ Au commencement il y avait 1 personne sur la planète, il s'appelait Arouhus.
+ 
+ - Cap 00:02
+ Arouhus n'avait pas de corps. Il avait une âme et un esprit.
+ Il avait 2 yeux, un nez, une bouche et 2 oreilles.
+ 
+ - Cap 00:03
+ Ses 2 yeux servaient à voir, bien sûr, mais les 2 avaient des fonctions.
+ Le droit permettait de controler les matières, le gauche de controler les conflits dont la guerre.
+ 
+ - Cap 00:04
+ Son nez, lui, ne servait pas à respirer car les Umaki ne respirent pas.
+ Bref, son nez controlait la vie, cela inclus aussi les avantages comme la puissance, la conaissance.
+ 
+ - Cap 00:05
+ Elle sa bouche sert à controler la nature.
+ Les Umaki ne mangent et ne boivent pas.
+ 
+ - Cap 00:06
+ Pour finir, ses 2 oreilles servent à entendre, oui, mais aussi à surveiller.
+ L'oreille droite contrôlait et protégeait les divinités de toute éventualité. La gauche contrôle la metéo, les tempêtes, etc.
+ 
+ - Cap 00:07
+ Arouhus, controlait presque tout.
+ Le reste était contrôlé par son âme elle même.
+ 
+ - Cap 00:08
+ Pour diviser son travail et le rendre plus facile, il créa des Umakikok ("KOK" signifiant Successeurs/es).
+ Les Umakikok eux auraient chacun une partie de son corps.
+ 
+ - Cap 00:09
+ Ils seraient 6, pour les différencier, ils auraient tous des noms différents.
+ Le premier s'appelerait Jirus (Jir = Matière / Us = Divinité) il aurait l'oeil droit d'Arouhus.
+ Le deuxième s'appelerait Mayus (May = Hostilités / Us = Divinité) il aurait l'oeil gauche d'Arouhus.
+ Le troisième s'appelerait Watus (Wat = Destin / Us = Divinité) il aurait le nez d'Arouhus.
+ Le quatrième s'appelerait Yanbus (Yanb = Monde / Us = Divinité) il aurait la bouche d'Arouhus.
+ Le cinquième s'appelerait Padzus (Padz = Défendre / Us = Divinité) il aurait l'oreille droite d'Arouhus.
+ Pour finir, le sixième s'appelerait Shinus (Shin = Température / Us = Divinité) il aurait l'oreille gauche d'Arouhus.
+ 
+ - Cap 00:10
+ Par contre, une partie de tout ces pouvoirs seraient donnés à l'Umaki. 
+ Pour assurer le bon fonctionnement de la planète.
+ 
+ - Cap 00:11
+ Mais vu que les Umaki et les Umakikok s'ennuyaient.
+ Il décidairent donc de créer Perk Umamo (Umamo = Humain / Perk = Parfait)
+ Cela leurs prennurent 365 Jours, ce qui sera nommé un Pam (Pam = Anné)
+ 
+ - Cap 00:12
+ Quand les Umaki décidairent d'ajouter les Umamo Perk sur la planète,
+ Il leurs manquaient des choses faire.
+ 
+ - Cap 00:13
+ Yanbus créa la nature.
+ Il créa les Fôrets, des endroits calmes pour ce calmer.
+ Il créa les Deserts, des endroits arides ou que la chaleure reigne.
+ Il créa la neige, de la neige congelé ou la froideur reigne.
+ Pour finir il créa les minéraux pour ajouter un équilibre à tout ça.
+ 
+ - Cap 00:14
+ Watus créa la conaissance.
+ Il créa une langue parlable et écrivable avec des minéraux.
+ La langue s'appela le Umamotilus (Umamo = Humain / Til = Langue / Us = Divinité)
+ Pour apprendre la langue il créa un livre sacré, la Caplot.
+ Les Umamos pourraient apprendre la religion, lire et écrire.
+ 
+ - Cap 00:15
+ Mayus décida de créer les émotions.
+ Pour les mauvais Umamos il créa la tristesse, la souffrance, la peure et la colère.
+ Pour les bons Umamos il créa la Joie, le bonheur' l'euphorie et d'autres émotions amusantes.
+ Pour rendre la planète plus captivante.
+ Il va aussi créer l'amour et la reproduction, un moyen de créer d'autres progénitures et avoir de la réjouissance.
+ 
+ - Cap 00:16
+ Mais pour créer la colère les mauvais esprit sont présent.
+ Ils prennent possession de ton corps pendant un court instant d'environ quelque secondes.
+ Pour corrompre ton esprit et te font faire une mauvaise action.
+ Si tu es saint d'esprit, tu n'auras aucun trouble
+ 
+ - Cap 00:17
+ Le Rom-Tom est à l'intérieur de tout le monde
+ Il possède une coquille noire protégeant les esprits malintentionnés de rentrer,
+ Mais malheureusement un mauvais esprit à réussi à le corrompore.
+ Alors 2 entrées en haut et en bas sont là pour les permettres de passer.
+ Le centre est blanc, il réprésente le bien.
+ Si vous faite le mal, des points rouges peuvent apparaitre dans votre Rom-Tom.
+ Ces points sensibles que les mauvais esprits attaquent pour vous rendre faible.
+ Une fois le point rouge attaqué, il disparait.
+ À chaque fois que vous êtes attaqués votre protection devient de plus en plus petite.
+ 
+ - Cap 00:18
+ Si le Rom-Tom finit par détruire avec la coquille de protection.
+ Vous déperirez de petit à petit
+ Jusqu'a ce que vous prouvez quelque chose.
+ Si vous mourrez avec la Rom-Tom brisé, vous devienderez une statu de pierre, 
+ Sinon vous vous réincarnerez, vous aurez tout oublié.
+ Watus vous créra à son image.
+ 
+ - Cap 00:19
+ Si vous avez causé beaucoup de mauvaise actions,
+ il vous reste un chance pour réparer votre Rom-Tom.
+ Les dieux peuvent décider d'envoyer une fausse âme, 
+ qui peut se déguiser en tout.
+ Si vous ne passez pas le test vous mourrez de petit à petit.
+ Si vous le passez votre Rom-Tom sera rétabli à 50%.
+ 
+ - Cap 00:20
+ Il y a des rituels pour éloigner les mauvais esprits.
+ Comme le rituel de pureté, tu dois serrer tout tes doigts,
+ Tu les met devant tes seins, tu les éloigne un peu de toi, tu mets tes doigts en V de chaque main,
+ et tu les fait partir dans des directions opposés.
+ 
+ - Cap 00:21
+ Des temples existe aussi dont 6 pour les Umakikok et 1 pour l'Umaki.
+ Vous pouvez faire des cérémonies spéciales dans les temples, ils sont tous différents.
+ Il y a aussi des escaliers avec 3 marches. Elle permettes d'embarquer dans le monde spirituel.
+ Les marches sont très longues mais la hauteur est petite. 
+ La longueur est assez grosse. Elle doit permette 3 humains moyen à embarquer dessus.
+ 
+ - Cap 00:22
+ Les dieux décidairent d'envoyer des messagers, nommées des champions.
+ Il y a 3 élus sur la planète terre.
+ 
+ - Cap 00:23
+ Café à été envoyé sur la planète terre pour devenir un général de guerre exceptionnel.
+ Lui Roman, partage la religion.
+ Lui Tobias, est un chanteur hors-père il crée des chants religieux.
+ 
+ - Cap 00:24
+ L'Umaki et les Umakikoks décidairent de donner une seule règle aux élus,
+ Ne pas être corrompu.
+ 
+ - Roman 00:01
+ Je suis heureux d'être arrivé sur la planète terre, je suis actuellement en Amérique,
+ Par contre, je suis avec des gens peu cultivé.
+ J'irais essayer d'aller les convaincre plus tard.
+ 
+ - Tobias 00:01
+ Je viens d'arriver en Europe, juste a coté de l'Asie
+ J'essaie de faire chanter ces hommes préhistoriques.
+ 
+ - Tobias 00:02
+ J'ai réussi à les faire chanter,
+ Ils semblent très intéressés par cette religion.
+ J'ai décider de les instruire et leurs donner le pouvoir de parler.
+ 
+ - Café 00:01
+ Je suis arrivé à un endroit ou il fait trop chaud pour moi, je suis en Afrique, proche de l'australie.
+ J'ai rencontré des individus étranges se battants.
+ J'ai remarqué des gens en difficulté, donc, j'ai décidé de les aider.
+ 
+ - Cap 00:25
+ S'il sont corrompu, ils pourraient causer la fin du monde,
+ Le soleil ce levera à l'Ouest et ce couchera à l'Est.
+ Tout deviendera sec, l'eau sera inconnue, comme la lave.
+ La caplot deviendera vide.
+ La lune sera rouge.
+ Plein de nuage gris apparaitront, ou aucun nuage.
+ Même les Umaki et les Kok auront peurent.
+ 
+ - Cap 00:26
+ À ce moment il sera trop tard pour vous faire pardonner.
+ Si ton Rom-Tom est brisé à ce moment tu mourras de petit à petit
+ Ton âme sortira de ton corps, Padzus lui-même t'emmenra en Aluwajik,
+ Il demandera aux mauvaises âmes de te réserver une salle et il ira te porter.
+ 
+ - Cap 00:27
+ Une fois dans ta salle une personne sera avec toi, une âme.
+ Il représentera tes mauvaises actions. Elle n'arrêtera pas de répéter tes mauvaises actions.
+ Tu seras enfermé à clé, tu n'auras rien dans ta chambre à l'exception du sang et une lumière rouge.
+ 
+ - Cap 00:28
+ Dans la salle des minutes paraisseront comme des heures
+ Tu resteras dans cette salle jusqu'au jour du jugement. Ce jour sera un lundi. 
+ Un tambour ce fera entendre, 3 coups seront donnés.
+ Mais avant le jour du jugement tu devras attendre le temps prévu pour tes mauvaises actions.
+ 
+ - Cap 00:29
+ La salle ce refermera doucement sur toi, jusqu'a ce que tout tes Os soit brisés.
+ Il y aura 2 portes, une barrée qui servira pour te faire sortir. Une non barrée,
+ qui te permettrera de re-vivre toutes les mauvaises actions que tu as fait.
+ Sauf que ce sera toi, la victime.
+ 
+ - Cap 00:30
+ Une fois le jour du jugement arrivé, Pandzus ira te porter dans une salle privé.
+ Il te posera des questions à propos de la religion.
+ 
+ - Cap 00:31
+ Si Pandzus juge que tu n'est pas apte à aller dans un endroit saint d'esprit,
+ Il ira te porter en Aluwajik
+ Tu pourras te réincarner en une âme invisible ou tu pourras rester en enfer.
+ Mais tu verras personne. Seulement des choses bouger par elle-même
+ 
+ - Cap 00:32
+ Si Pandzus est d'accord de t'envoyer au Paradis,
+ Tu pourras décider de te réincarner en une âme vivante,
+ tu perderas ta mémoire et Watus te fera comme il le souhaite.
+ Ou tu pourras décider de devenir une âme invisible,
+ tu ne seras pas mêlé aux âmes invisibles de l'enfer.
+ Si tu changes d'idée tu auras juste à crier PADZUS!
