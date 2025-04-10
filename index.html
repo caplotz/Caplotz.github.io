@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>- La Caplot -</title>
-    <link rel="icon" href="B-removebg-preview.png"/>
+    <link rel="icon" href="B-removebg-preview.png">
     <style>
         @font-face {
             font-family: 'GodOfWar';
             src: url('GODOFWAR.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
         }
 
         body {
             font-family: 'GodOfWar', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
             margin: 0;
             padding: 0;
             display: flex;
@@ -30,6 +34,8 @@
             color: #2c3e50;
             text-align: center;
             padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode header {
@@ -43,6 +49,7 @@
 
         header h1 {
             font-size: 45px;
+            margin: 10px 0;
         }
 
         header h2 {
@@ -52,6 +59,7 @@
 
         header h3 {
             font-size: 50px;
+            font-weight: bold;
             margin: 0;
         }
 
@@ -81,8 +89,11 @@
         .content {
             display: flex;
             justify-content: center;
-            padding: 20px;
+            align-items: flex-start;
+            width: 80%;
             flex: 1;
+            padding: 20px;
+            margin: auto;
         }
 
         section {
@@ -94,10 +105,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             max-height: 80vh;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         body.dark-mode section {
             background-color: #444;
+            color: #f8f9fa;
         }
 
         #navigation {
@@ -115,18 +128,31 @@
 
         body.dark-mode #navigation {
             background-color: #555;
+            color: #fff;
         }
 
         #navigation ul li {
             margin: 10px 0;
             cursor: pointer;
             padding: 10px;
+            background-color: #febd77;
             border-radius: 5px;
             text-align: center;
             font-size: 16px;
             transition: 0.3s;
+            font-family: 'GodOfWar', sans-serif;
         }
 
+        body.dark-mode #navigation ul li {
+            background-color: #ff9e40;
+            color: black;
+        }
+
+        #navigation ul li:hover {
+            background-color: #febd23;
+        }
+
+        /* Applied yellow color specifically to Roman, Tobias, and Café in the navigation */
         #navigation ul li.roman,
         #navigation ul li.tobias,
         #navigation ul li.cafe {
@@ -134,29 +160,28 @@
             color: black;
         }
 
-        #navigation ul li.ere {
-            background-color: #2ecc71;
-            color: white;
-            font-weight: bold;
-        }
-
-        #navigation ul li.cap {
-            background-color: #ff9e40;
+        body.dark-mode #navigation ul li.roman,
+        body.dark-mode #navigation ul li.tobias,
+        body.dark-mode #navigation ul li.cafe {
+            background-color: #FFEA00;
             color: black;
-        }
-
-        body.dark-mode #navigation ul li.cap {
-            background-color: #febd59;
         }
 
         pre {
             font-size: 18px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            color: #2c3e50;
+            font-family: 'GodOfWar', sans-serif;
+        }
+
+        body.dark-mode pre {
+            color: #fff;
         }
 
         .cap-text {
             font-size: 14px;
+            color: #b4b4b4;
         }
 
         .attention {
@@ -164,9 +189,9 @@
             font-weight: bold;
         }
 
-        .ere-title {
-            color: #2ecc71;
+        .special-era {
             font-size: 24px;
+            color: green;
             font-weight: bold;
         }
 
@@ -209,9 +234,9 @@
                 return response.text();
             })
             .then(text => {
-                const { formattedText, capes } = formatTextAndExtractCaps(text);
+                const { formattedText, capes, specialCaps } = formatTextAndExtractCaps(text);
                 document.getElementById('-content').innerHTML = formattedText;
-                populateCapList(capes);
+                populateCapList(capes, specialCaps);
             })
             .catch(error => {
                 document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
@@ -222,26 +247,17 @@
         const lines = text.split('\n');
         const formattedLines = [];
         const capes = [];
+        const specialCaps = [];
 
         lines.forEach((line, index) => {
-            let capId = `cap-${index}`;
-
-            if (line.startsWith('_--=== ') && line.includes('Ère')) {
-                // Traitement Ère
-                formattedLines.push(`<span class="ere-title" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'ere' });
-            } else if (line.startsWith('- Cap')) {
+            if (line.startsWith('--===')) {
+                const specialCapId = 'special-cap-' + index;
+                formattedLines.push(`<span class="special-era" id="${specialCapId}">${line}</span>`);
+                specialCaps.push({ name: line, id: specialCapId });
+            } else if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
+                const capId = 'cap-' + index;
                 formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'cap' });
-            } else if (line.startsWith('- Roman')) {
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'roman' });
-            } else if (line.startsWith('- Tobias')) {
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'tobias' });
-            } else if (line.startsWith('- Café')) {
-                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                capes.push({ name: line, id: capId, type: 'cafe' });
+                capes.push({ name: line, id: capId });
             } else {
                 formattedLines.push(line);
             }
@@ -249,23 +265,29 @@
 
         return {
             formattedText: formattedLines.join('<br>'),
-            capes
+            capes,
+            specialCaps
         };
     }
 
-    function populateCapList(capes) {
+    function populateCapList(capes, specialCaps) {
         const capList = document.getElementById('cap-list');
         capList.innerHTML = '';
+
+        // Ajouter les caps réguliers
         capes.forEach(cap => {
             const li = document.createElement('li');
             li.textContent = cap.name;
             li.onclick = () => scrollToCap(cap.id);
+            capList.appendChild(li);
+        });
 
-            // Appliquer classes selon le type
-            if (cap.type) {
-                li.classList.add(cap.type);
-            }
-
+        // Ajouter les caps spéciaux (qui commencent par --===)
+        specialCaps.forEach(specialCap => {
+            const li = document.createElement('li');
+            li.textContent = specialCap.name;
+            li.onclick = () => scrollToCap(specialCap.id);
+            li.style.backgroundColor = '#32CD32';  // Vert pour les ères spéciales
             capList.appendChild(li);
         });
     }
@@ -288,13 +310,11 @@
         if (language === 'fr') {
             language = 'en';
             currentFile = 'capoui-en.txt';
-            loadTextWithFallback();
+            loadText();
             document.getElementById('lang-button').textContent = 'Mettre en français';
             document.getElementById('download-button').textContent = 'Download the Caplot';
             document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
             document.getElementById('header-main-title').textContent = 'The Caplot';
-            document.getElementById('bug-d').textContent = "If you're on a phone, put your screen in landscape mode";
-            document.getElementById('contact').textContent = "Contact us at: caplot.help@hotmail.com (1-5 Business Days)";
             document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
             document.getElementById('nav-title').textContent = 'Cap Navigation';
         } else {
@@ -305,31 +325,9 @@
             document.getElementById('download-button').textContent = 'Télécharge la Caplot';
             document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
             document.getElementById('header-main-title').textContent = 'La Caplot';
-            document.getElementById('bug-d').textContent = 'Si vous êtes sur téléphone, mettez votre écran en mode Paysage';
-            document.getElementById('contact').textContent = 'Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)';
             document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
             document.getElementById('nav-title').textContent = 'Navigation des Caps';
         }
-    }
-
-    function loadTextWithFallback() {
-        fetch(currentFile)
-            .then(response => {
-                if (!response.ok) {
-                    currentFile = 'capoui.txt';
-                    return fetch(currentFile);
-                }
-                return response;
-            })
-            .then(response => response.text())
-            .then(text => {
-                const { formattedText, capes } = formatTextAndExtractCaps(text);
-                document.getElementById('-content').innerHTML = formattedText;
-                populateCapList(capes);
-            })
-            .catch(error => {
-                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-            });
     }
 
     window.onload = loadText;
