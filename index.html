@@ -9,6 +9,8 @@
         @font-face {
             font-family: 'GodOfWar';
             src: url('GODOFWAR.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
         }
 
         body {
@@ -77,6 +79,7 @@
             border-radius: 5px;
             font-size: 16px;
             transition: 0.3s ease-in-out;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         .header-button:hover {
@@ -102,11 +105,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             max-height: 80vh;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         body.dark-mode section {
             background-color: #444;
-            color: ##2c3e50;
+            color: #f8f9fa;
         }
 
         #navigation {
@@ -135,6 +139,8 @@
             border-radius: 5px;
             text-align: center;
             font-size: 16px;
+            transition: 0.3s;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         body.dark-mode #navigation ul li {
@@ -142,12 +148,23 @@
             color: black;
         }
 
-        body.dark-mode #navigation ul li:hover {
+        #navigation ul li:hover {
             background-color: #febd23;
         }
 
-        #navigation ul li:hover {
-            background-color: #febd23;
+        /* Applied yellow color specifically to Roman, Tobias, and Café in the navigation */
+        #navigation ul li.roman,
+        #navigation ul li.tobias,
+        #navigation ul li.cafe {
+            background-color: #FFD700;
+            color: black;
+        }
+
+        body.dark-mode #navigation ul li.roman,
+        body.dark-mode #navigation ul li.tobias,
+        body.dark-mode #navigation ul li.cafe {
+            background-color: #FFEA00;
+            color: black;
         }
 
         pre {
@@ -155,6 +172,7 @@
             white-space: pre-wrap;
             word-wrap: break-word;
             color: #2c3e50;
+            font-family: 'GodOfWar', sans-serif;
         }
 
         body.dark-mode pre {
@@ -171,183 +189,160 @@
             font-weight: bold;
         }
 
-        .cap-cafe {
-            background-color: #8B4513;
-            color: white;
-        }
-
-        .cap-roman {
-            background-color: #4682B4;
-            color: white;
-        }
-
-        .cap-tobias {
-            background-color: #FFD700;
-            color: black;
-        }
     </style>
 </head>
 <body class="dark-mode">
 
-    <header>
-        <h3 id="header-title">Le Saint Livre Caplot</h3>
-        <h1 id="header-main-title">La Caplot</h1>
-        <small id="bug-d" class="attention">Si vous êtes sur téléphone, mettez votre écran en mode Paysage</small>
-        <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
-        <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
-        <div class="button-container">
-            <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
-            <a href="capoui-download.txt" download="Caplot.txt" class="header-button" id="download-button">Télécharge la Caplot</a>
-            <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
-        </div>
-    </header>
-
-    <div class="content">
-        <section>
-            <pre id="-content">Chargement du contenu...</pre>
-        </section>
-        <div id="navigation">
-            <h3 id="nav-title">Navigation des Caps</h3>
-            <ul id="cap-list"></ul>
-        </div>
+<header>
+    <h3 id="header-title">Le Saint Livre Caplot</h3>
+    <h1 id="header-main-title">La Caplot</h1>
+    <small id="bug-d" class="attention">Si vous êtes sur téléphone, mettez votre écran en mode Paysage</small>
+    <h2 id="header-subtitle">Explorez les caps sacrés à travers le texte divin.</h2>
+    <small id="contact" class="attention">Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)</small>
+    <div class="button-container">
+        <button id="lang-button" class="header-button" onclick="toggleLanguage()">Put it in english</button>
+        <a href="capoui-download.txt" download="Caplot.txt" class="header-button" id="download-button">Télécharge la Caplot</a>
+        <button id="d-button" class="header-button dark-mode-button" onclick="toggleDarkMode()">Mode Clair</button>
     </div>
+</header>
 
-    <script>
-        let currentFile = 'capoui.txt';
-        let language = 'fr';
-        let isDarkMode = true;
+<div class="content">
+    <section>
+        <pre id="-content">Chargement du contenu...</pre>
+    </section>
+    <div id="navigation">
+        <h3 id="nav-title">Navigation des Caps</h3>
+        <ul id="cap-list"></ul>
+    </div>
+</div>
 
-        function loadText() {
-            fetch(currentFile)
-                .then(response => {
-                    if (!response.ok) throw new Error('Erreur de chargement du fichier');
-                    return response.text();
-                })
-                .then(text => {
-                    const { formattedText, capes } = formatTextAndExtractCaps(text);
-                    document.getElementById('-content').innerHTML = formattedText;
-                    populateCapList(capes);
-                })
-                .catch(error => {
-                    document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-                });
-        }
+<script>
+    let currentFile = 'capoui.txt';
+    let language = 'fr';
+    let isDarkMode = true;
 
-        function formatTextAndExtractCaps(text) {
-            const lines = text.split('\n');
-            const formattedLines = [];
-            const capes = [];
-
-            lines.forEach((line, index) => {
-                if (
-                    line.startsWith('- Cap') ||
-                    line.startsWith('- Café') ||
-                    line.startsWith('- Roman') ||
-                    line.startsWith('- Tobias')
-                ) {
-                    const capId = `cap-${index}`;
-                    formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
-                    capes.push({ name: line, id: capId });
-                } else {
-                    formattedLines.push(line);
-                }
+    function loadText() {
+        fetch(currentFile)
+            .then(response => {
+                if (!response.ok) throw new Error('Erreur de chargement du fichier');
+                return response.text();
+            })
+            .then(text => {
+                const { formattedText, capes } = formatTextAndExtractCaps(text);
+                document.getElementById('-content').innerHTML = formattedText;
+                populateCapList(capes);
+            })
+            .catch(error => {
+                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
             });
+    }
 
-            return {
-                formattedText: formattedLines.join('<br>'),
-                capes
-            };
-        }
+    function formatTextAndExtractCaps(text) {
+        const lines = text.split('\n');
+        const formattedLines = [];
+        const capes = [];
 
-        function populateCapList(capes) {
-            const capList = document.getElementById('cap-list');
-            capList.innerHTML = '';
-            capes.forEach(cap => {
-                const li = document.createElement('li');
-                li.textContent = cap.name;
-                li.onclick = () => scrollToCap(cap.id);
-
-                if (cap.name.startsWith('- Café')) {
-                    li.classList.add('cap-cafe');
-                } else if (cap.name.startsWith('- Roman')) {
-                    li.classList.add('cap-roman');
-                } else if (cap.name.startsWith('- Tobias')) {
-                    li.classList.add('cap-tobias');
-                }
-
-                capList.appendChild(li);
-            });
-        }
-
-        function scrollToCap(capId) {
-            const capEl = document.getElementById(capId);
-            if (capEl) {
-                capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        function toggleDarkMode() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode', isDarkMode);
-
-            const darkModeButton = document.getElementById('d-button');
-            darkModeButton.textContent = isDarkMode
-                ? (language === 'fr' ? 'Mode Clair' : 'Light Mode')
-                : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
-        }
-
-        function toggleLanguage() {
-            if (language === 'fr') {
-                language = 'en';
-                currentFile = 'capoui-en.txt';
-                loadTextWithFallback();
-                document.getElementById('lang-button').textContent = 'Mettre en français';
-                document.getElementById('download-button').textContent = 'Download the Caplot';
-                document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
-                document.getElementById('header-main-title').textContent = 'The Caplot';
-                document.getElementById('bug-d').textContent = "If you're on a phone, put your screen in landscape mode";
-                document.getElementById('contact').textContent = "Contact us at: caplot.help@hotmail.com (1-5 Business Days)";
-                document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
-                document.getElementById('nav-title').textContent = 'Cap Navigation';
-                document.getElementById('d-button').textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        lines.forEach((line, index) => {
+            if (line.startsWith('- Cap') || line.startsWith('- Café') || line.startsWith('- Roman') || line.startsWith('- Tobias')) {
+                const capId = `cap-${index}`;
+                formattedLines.push(`<span class="cap-text" id="${capId}">${line}</span>`);
+                capes.push({ name: line, id: capId });
             } else {
-                language = 'fr';
-                currentFile = 'capoui.txt';
-                loadText();
-                document.getElementById('lang-button').textContent = 'Put it in english';
-                document.getElementById('download-button').textContent = 'Télécharge la Caplot';
-                document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
-                document.getElementById('header-main-title').textContent = 'La Caplot';
-                document.getElementById('bug-d').textContent = 'Si vous êtes sur téléphone, mettez votre écran en mode Paysage';
-                document.getElementById('contact').textContent = 'Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)';
-                document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
-                document.getElementById('nav-title').textContent = 'Navigation des Caps';
-                document.getElementById('d-button').textContent = isDarkMode ? 'Mode Clair' : 'Mode Sombre';
+                formattedLines.push(line);
             }
-        }
+        });
 
-        function loadTextWithFallback() {
-            fetch(currentFile)
-                .then(response => {
-                    if (!response.ok) {
-                        currentFile = 'capoui.txt';
-                        return fetch(currentFile);
-                    }
-                    return response;
-                })
-                .then(response => response.text())
-                .then(text => {
-                    const { formattedText, capes } = formatTextAndExtractCaps(text);
-                    document.getElementById('-content').innerHTML = formattedText;
-                    populateCapList(capes);
-                })
-                .catch(error => {
-                    document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
-                });
-        }
+        return {
+            formattedText: formattedLines.join('<br>'),
+            capes
+        };
+    }
 
-        window.onload = loadText;
-    </script>
+    function populateCapList(capes) {
+        const capList = document.getElementById('cap-list');
+        capList.innerHTML = '';
+        capes.forEach(cap => {
+            const li = document.createElement('li');
+            li.textContent = cap.name;
+            li.onclick = () => scrollToCap(cap.id);
+
+            // Add specific classes for Roman, Tobias, and Café to make them yellow in navigation
+            if (cap.name.includes('Roman')) {
+                li.classList.add('roman');
+            } else if (cap.name.includes('Tobias')) {
+                li.classList.add('tobias');
+            } else if (cap.name.includes('Café')) {
+                li.classList.add('cafe');
+            }
+
+            capList.appendChild(li);
+        });
+    }
+
+    function scrollToCap(capId) {
+        const capEl = document.getElementById(capId);
+        if (capEl) {
+            capEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    function toggleDarkMode() {
+        isDarkMode = !isDarkMode;
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        const darkModeButton = document.querySelector('.dark-mode-button');
+        darkModeButton.textContent = isDarkMode ? (language === 'fr' ? 'Mode Clair' : 'Light Mode') : (language === 'fr' ? 'Mode Sombre' : 'Dark Mode');
+    }
+
+    function toggleLanguage() {
+        if (language === 'fr') {
+            language = 'en';
+            currentFile = 'capoui-en.txt';
+            loadTextWithFallback();
+            document.getElementById('lang-button').textContent = 'Mettre en français';
+            document.getElementById('download-button').textContent = 'Download the Caplot';
+            document.getElementById('header-title').textContent = 'The Holy Book of Caplot';
+            document.getElementById('header-main-title').textContent = 'The Caplot';
+            document.getElementById('bug-d').textContent = "If you're on a phone, put your screen in landscape mode";
+            document.getElementById('contact').textContent = "Contact us at: caplot.help@hotmail.com (1-5 Business Days)";
+            document.getElementById('header-subtitle').textContent = 'Explore the sacred caps through the divine text.';
+            document.getElementById('nav-title').textContent = 'Cap Navigation';
+        } else {
+            language = 'fr';
+            currentFile = 'capoui.txt';
+            loadText();
+            document.getElementById('lang-button').textContent = 'Put it in english';
+            document.getElementById('download-button').textContent = 'Télécharge la Caplot';
+            document.getElementById('header-title').textContent = 'Le Saint Livre Caplot';
+            document.getElementById('header-main-title').textContent = 'La Caplot';
+            document.getElementById('bug-d').textContent = 'Si vous êtes sur téléphone, mettez votre écran en mode Paysage';
+            document.getElementById('contact').textContent = 'Contactez nous au: caplot.help@hotmail.com (1-5 Jours Ouvrables)';
+            document.getElementById('header-subtitle').textContent = 'Explorez les caps sacrés à travers le texte divin.';
+            document.getElementById('nav-title').textContent = 'Navigation des Caps';
+        }
+    }
+
+    function loadTextWithFallback() {
+        fetch(currentFile)
+            .then(response => {
+                if (!response.ok) {
+                    currentFile = 'capoui.txt';
+                    return fetch(currentFile);
+                }
+                return response;
+            })
+            .then(response => response.text())
+            .then(text => {
+                const { formattedText, capes } = formatTextAndExtractCaps(text);
+                document.getElementById('-content').innerHTML = formattedText;
+                populateCapList(capes);
+            })
+            .catch(error => {
+                document.getElementById('-content').textContent = '(ERREUR DU SERVEUR: ' + error.message + ')';
+            });
+    }
+
+    window.onload = loadText;
+</script>
 
 </body>
 </html>
