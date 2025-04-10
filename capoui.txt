@@ -93,7 +93,7 @@ Une fois le point rouge attaqué, il disparait.
 
 - Cap 00:18
 Si le Rom-Tom finit par détruire avec la coquille de protection.
-Vous devienderez de petit à petit une statue de pierre.
+Vous déperirez de petit à petit
 Jusqu'a ce que vous prouvez quelque chose.
 Si vous mourrez avec la Rom-Tom brisé, vous devienderez une statu de pierre, 
 Sinon vous vous réincarnerez, vous aurez tout oublié.
@@ -104,7 +104,7 @@ Si vous avez causé beaucoup de mauvaise actions,
 il vous reste un chance pour réparer votre Rom-Tom.
 Les dieux peuvent décider d'envoyer une fausse âme, 
 qui peut se déguiser en tout.
-Si vous ne passez pas le test vous aller devenir une statue de pierre.
+Si vous ne passez pas le test vous mourrez de petit à petit.
 Si vous le passez votre Rom-Tom sera rétabli à 50%.
 
 - Cap 00:20
@@ -163,12 +163,45 @@ Même les Umaki et les Kok auront peurent.
 
 - Cap 00:26
 À ce moment il sera trop tard pour vous faire pardonner.
-Si ton Rom-Tom est brisé à ce moment tu deviendras une statue de pierre.
+Si ton Rom-Tom est brisé à ce moment tu mourras de petit à petit
 Ton âme sortira de ton corps, Padzus lui-même t'emmenra en Aluwajik,
 Il demandera aux mauvaises âmes de te réserver une salle et il ira te porter.
+
+- Cap 00:27
 Une fois dans ta salle une personne sera avec toi, une âme.
 Il représentera tes mauvaises actions. Elle n'arrêtera pas de répéter tes mauvaises actions.
 Tu seras enfermé à clé, tu n'auras rien dans ta chambre à l'exception du sang et une lumière rouge.
+
+- Cap 00:28
 Dans la salle des minutes paraisseront comme des heures
 Tu resteras dans cette salle jusqu'au jour du jugement. Ce jour sera un lundi. 
-Avant le jour du jugement tu devras attendre le temps prévu pour tes mauvaises actions
+Un tambour ce fera entendre, 3 coups seront donnés.
+Mais avant le jour du jugement tu devras attendre le temps prévu pour tes mauvaises actions.
+
+- Cap 00:29
+La salle ce refermera doucement sur toi, jusqu'a ce que tout tes Os soit brisés.
+Il y aura 2 portes, une barrée qui servira pour te faire sortir. Une non barrée,
+qui te permettrera de re-vivre toutes les mauvaises actions que tu as fait.
+Sauf que ce sera toi, la victime.
+
+- Cap 00:30
+Une fois le jour du jugement arrivé, Pandzus ira te porter dans une salle privé.
+Il te posera des questions à propos de la religion.
+
+- Cap 00:31
+Si Pandzus juge que tu n'est pas apte à aller dans un endroit saint d'esprit,
+Il ira te porter en Aluwajik
+Tu pourras te réincarner en une âme invisible ou tu pourras rester en enfer.
+Mais tu verras personne. Seulement des choses bouger par elle-même
+
+- Cap 00:32
+Si Pandzus est d'accord de t'envoyer au Paradis,
+Tu pourras décider de te réincarner en une âme vivante,
+tu perderas ta mémoire et Watus te fera comme il le souhaite.
+Ou tu pourras décider de devenir une âme invisible,
+tu ne seras pas mêlé aux âmes invisibles de l'enfer.
+Si tu changes d'idée tu auras juste à crier PADZUSSS
+
+- Cap 00:33
+
+
